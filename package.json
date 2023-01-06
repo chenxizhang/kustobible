@@ -1,0 +1,17 @@
+{
+  "name": "book",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "honkit build",
+    "serve": "honkit serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "honkit": "^3.6.23",
+    "honkit-plugin-google-analytics": "^1.0.0"
+  }
+}
