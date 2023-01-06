@@ -1,5 +1,6 @@
 # Summary
 
+* [欢迎阅读](README.md)
 * [封面](cover.md)
 * [作者自序](preface.md)
 * [第一季](part1/overview.md)
