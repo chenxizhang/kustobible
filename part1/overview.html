@@ -1,0 +1,406 @@
+
+<!DOCTYPE HTML>
+<html lang="zh" >
+    <head>
+        <meta charset="UTF-8">
+        <title>第一季 · 大数据分析新玩法之Kusto宝典</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="author" content="陈希章">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+<!-- -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCF513CZTS"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-PCF513CZTS');
+</script>
+ 
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="輸入並搜尋" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../cover.html">
+            
+                <a href="../cover.html">
+            
+                    
+                    封面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    作者自序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="overview.html">
+            
+                <a href="overview.html">
+            
+                    
+                    第一季
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="chapter1.html">
+            
+                <a href="chapter1.html">
+            
+                    
+                    第一章：Kusto简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="chapter2.html">
+            
+                <a href="chapter2.html">
+            
+                    
+                    第二章：KQL核心
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="chapter3.html">
+            
+                <a href="chapter3.html">
+            
+                    
+                    第三章：数据可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="chapter4.html">
+            
+                <a href="chapter4.html">
+            
+                    
+                    第四章：数据导入和导出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="chapter5.html">
+            
+                <a href="chapter5.html">
+            
+                    
+                    第五章：外部应用集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="chapter6.html">
+            
+                <a href="chapter6.html">
+            
+                    
+                    第六章：自动化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本書使用 HonKit 釋出
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >第一季</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第一季：一元初始">第一季：一元初始</h1>
+<blockquote>
+<p>作者：陈希章，2023年1月 于上海 
+专栏：<strong>大数据分析新玩法之Kusto宝典</strong> 第一季：一元初始
+反馈：<a href="mailto:ares@xizhang.com" target="_blank">ares@xizhang.com</a></p>
+</blockquote>
+<p>这个系列文章的第一季，主要的目标是让所有人通过现有的范例，和免费的 Azure Data Explorer服务来体验 Kusto 的魅力，难度指数为 Level 200（讲解基本概念，但也需要动手实验才能完全理解），这一季一共分为六个章节，分别是：</p>
+<ol>
+<li><strong>Kusto 介绍</strong>。 这一章将全面介绍Kusto （ADX：Azure Date Explorer）的整体架构，应用场景，主要亮点，端到端体验等。</li>
+<li><strong>KQL 核心</strong>。 这一章将专注于使用Kusto的最主要场景：查询。我们将对查询的基本语法，和实例场景进行展开。</li>
+<li><strong>数据可视化</strong>。这一章将针对Kusto内置提供的可视化图表，和最新推出的仪表盘功能进行讲解。</li>
+<li><strong>数据导入和导出</strong>。从这一章开始，你将学会创建群集（cluster），数据库（database）和表（table），并且了解如何导入和导出自己的数据。</li>
+<li><strong>外部应用集成</strong>。这一章将介绍Kusto 与外部应用集成的案例场景，包括Power BI, Excel，和Jupyter Notebook等。</li>
+<li><strong>自动化</strong>。这一章将介绍通过命令行工具，或者编程的方式实现自动化。</li>
+</ol>
+<p>如果你希望在后续收到本书更新的通知，请扫描二维码或点击 <a href="https://forms.office.com/r/5304Tja3CM" target="_blank">这里</a> 做一个简单的登记。</p>
+<p><img src="../images/Pasted%20image%2020230106175439.png" alt></p>
+<p>那就让我们开始吧。</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../preface.html" class="navigation navigation-prev " aria-label="Previous page: 作者自序">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="chapter1.html" class="navigation navigation-next " aria-label="Next page: 第一章：Kusto简介">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第一季","level":"1.4","depth":1,"next":{"title":"第一章：Kusto简介","level":"1.4.1","depth":2,"path":"part1/chapter1.md","ref":"part1/chapter1.md","articles":[]},"previous":{"title":"作者自序","level":"1.3","depth":1,"path":"preface.md","ref":"preface.md","articles":[]},"articles":[{"title":"第一章：Kusto简介","level":"1.4.1","depth":2,"path":"part1/chapter1.md","ref":"part1/chapter1.md","articles":[]},{"title":"第二章：KQL核心","level":"1.4.2","depth":2,"path":"part1/chapter2.md","ref":"part1/chapter2.md","articles":[]},{"title":"第三章：数据可视化","level":"1.4.3","depth":2,"path":"part1/chapter3.md","ref":"part1/chapter3.md","articles":[]},{"title":"第四章：数据导入和导出","level":"1.4.4","depth":2,"path":"part1/chapter4.md","ref":"part1/chapter4.md","articles":[]},{"title":"第五章：外部应用集成","level":"1.4.5","depth":2,"path":"part1/chapter5.md","ref":"part1/chapter5.md","articles":[]},{"title":"第六章：自动化","level":"1.4.6","depth":2,"path":"part1/chapter6.md","ref":"part1/chapter6.md","articles":[]}],"dir":"ltr"},"config":{"plugins":["honkit-plugin-google-analytics"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"analytics":{"uid":"G-PCF513CZTS"},"honkit-plugin-google-analytics":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"陈希章","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"大数据分析新玩法之Kusto宝典","language":"zh","gitbook":"*","description":"大数据分析，Kusto，Azure Data Explorer"},"file":{"path":"part1/overview.md","mtime":"2023-01-06T14:51:57.281Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-01-06T14:52:07.656Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

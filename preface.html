@@ -1,0 +1,427 @@
+
+<!DOCTYPE HTML>
+<html lang="zh" >
+    <head>
+        <meta charset="UTF-8">
+        <title>作者自序 · 大数据分析新玩法之Kusto宝典</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="author" content="陈希章">
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+<!-- -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCF513CZTS"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-PCF513CZTS');
+</script>
+ 
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="輸入並搜尋" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="cover.html">
+            
+                <a href="cover.html">
+            
+                    
+                    封面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="preface.html">
+            
+                <a href="preface.html">
+            
+                    
+                    作者自序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="part1/overview.html">
+            
+                <a href="part1/overview.html">
+            
+                    
+                    第一季
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="part1/chapter1.html">
+            
+                <a href="part1/chapter1.html">
+            
+                    
+                    第一章：Kusto简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="part1/chapter2.html">
+            
+                <a href="part1/chapter2.html">
+            
+                    
+                    第二章：KQL核心
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="part1/chapter3.html">
+            
+                <a href="part1/chapter3.html">
+            
+                    
+                    第三章：数据可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="part1/chapter4.html">
+            
+                <a href="part1/chapter4.html">
+            
+                    
+                    第四章：数据导入和导出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="part1/chapter5.html">
+            
+                <a href="part1/chapter5.html">
+            
+                    
+                    第五章：外部应用集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="part1/chapter6.html">
+            
+                <a href="part1/chapter6.html">
+            
+                    
+                    第六章：自动化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本書使用 HonKit 釋出
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >作者自序</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="序：启发式和探索式的大数据分析工具">序：启发式和探索式的大数据分析工具</h1>
+<blockquote>
+<p>作者：陈希章  2023年1月2日 于上海 
+反馈：<a href="mailto:ares@xizhang.com" target="_blank">ares@xizhang.com</a></p>
+</blockquote>
+<p>这是一本电子书，作为献给自己的新年礼物，其实已经构思了很久，这一方面跟我多年的工作经历有关 —— 我的职业生涯中最为有意思的部分可能就是跟数据打交道。因为我认为数据是有生命力的，我对Excel如数家珍，对SQL Server Business Intelligence 和数据挖掘也略有研究，前几年很推崇Power BI 给我们带来的数据可视化变革和新型的DAX语言。另一方面，在近几年工作中，利用数据分析来辅助决策更是我工作的一部分，也颇有一些收获。这些工作和体验，总是会留下一些痕迹，或者激发一些思考。</p>
+<p>接触Kusto是由于前几年在基于Azure平台做应用开发时，我了解到一个全新的服务叫 Application Insights (简称AI)，它可以很方便地收集一个应用程序的运行状况，例如成功和失败的请求，响应时间的规律等，并且用直观的图表进行展示。</p>
+<p><img src="images/Pasted%20image%2020230102090226.png" alt></p>
+<p>当时我就很好奇，这是怎么做到的呢？如果我要自己进行一些特定的查询，以便了解更多信息，那么又该怎么做呢？从直觉上说，我断定这个服务的背后肯定会有一个数据库，而且我自认为对数据库是略有研究的，会不会是跟SQL Server 这类关系型数据库差不多的一个东西呢？</p>
+<p>带着这样的疑问，我继续做了一些研究，发现这个Application Insights 确实是有一套类似于数据库的结构，例如一般都有如下的几个表格。</p>
+<p><img src="images/Pasted%20image%2020230102090629.png" alt></p>
+<p>看起来很眼熟嘛，正当我要将压箱底的 T-SQL 神功拿出来一展身手时， 却意外地发现了一个宝藏—— Application Insights 自带了一套特殊的查询语法，我后来才知道这叫 Kusto Query Language (简称KQL)。</p>
+<p><img src="images/Pasted%20image%2020230102091035.png" alt></p>
+<p>上图是一个简单的KQL 查询，它根据选定的Time range （在界面上设置了，没有写到查询中），查询 requests这个表，按照每10分钟一个窗口，统计一批查询的平均响应时间（duration），并且通过一个时间图表（timechart）展示出来。</p>
+<pre><code class="lang-kql">requests
+| summarize avgRequestDuration=avg(duration) by bin(timestamp, 10m) 
+| render timechart
+</code></pre>
+<p>让我们再来看一下上面的查询，我感觉这种新的查询语言有如下的特点</p>
+<ol>
+<li><strong>非常符合直觉</strong>。例如，我们要查询 requests 这个表，那么就把它放在开始的位置，因为它是一切的起点。当然，从技术上说，这种设计带来的另外一个可能更大的好处是，它让在编辑器中提供智能感知成为可能。在编写 T-SQL 的查询时，你不会有这种智能感知的，因为它是用 <code>SELECT xxxxx FROM tableName</code> 这样的语法的，既然 <code>SELECT</code> 是在 <code>FROM</code> 之前的 （虽然真正执行时是反过来的），那么编辑器是很难推断字段列表并且给与智能感知的。</li>
+<li><strong>面向业务的设计</strong>。这个新的语言，力图尽量简化查询，让用户更加专注在业务分析上。从业务角度来说，用户在这个查询上最想做的事情就是对 duration 这个信息进行平均值计算，那么最关键就是 avg 这个函数，而 summarize 这个操作符（operator）则清晰地表达了语义（真的就相当于是标准的英语口语一样），至于 bin 这个函数（以及它专门为时间等类型字段提供的各种分组范式）则进一步化繁为简，你只要想一想在T-SQL中如何实现这种窗口查询就能明白它的先进性。</li>
+<li><strong>管道式编程</strong>。 请注意看以上查询中的 “|” 这个字符。这在很多编程（尤其是函数式）语言中都有，例如 <code>PowerShell</code> 。但我认为将管道（pipe）用到数据库查询中，其实是最为贴切的。数据，就是像水一样，流过来，流过去，不是吗？管道式的编程，让整个查询变得更加结构化，也带来了更大的扩展性。</li>
+<li><strong>查询和展示一体化</strong>。 严格意义上， <code>render</code> 这个操作符，并不属于KQL的一部分，它是可视化的范畴，而不是查询。事实上，它也只在特定的工具（例如Azure Data Explorer， 和 Kusto Explorer）中才能起作用，这不难理解。但这种看起来不那么严谨的嫁接，却再一次体现了从业务出发的实用主义。因为从用户的角度，他不管你怎么实现，他要的是快速从查询中得到想要的信息和见解，如果写一个查询，既能得到数据本身，也能通过图表看到更多的规律，那当然是极好的。我愿意把Kusto视为一个 <code>启发式、探索式的大数据分析平台和工具</code> 也是基于这个方面的考虑。</li>
+</ol>
+<p>以上只是管中窥豹，Kusto 是什么呢？ 它其实最开始只是微软内部的一个项目，始于2014年左右吧。设计 Kusto 最开始的目的，一方面是想提供一种对大量日志文件（大部分是文本文件）进行快速搜索的机制，这就需要一套全新的存储和计算的架构和引擎。另外， Kusto 产品组的另外一个着眼点是改善数据查询的方式和体验，而这是以往经常被忽视的。</p>
+<p>数据分析师（Data Analyst），或科学家（Data Scientist）们是被忽视的一部分人。他们绞尽脑汁做出的数据模型，熬夜爬出来并且忍着恶心清洗的数据，呕心沥血东拼西凑出来的那些似乎一眼望过去就能看出来很多价值的图表，如果能在老板们的高端会议上偶尔被提到一两句，那就应该要感恩涕零，泪下四条了。这跟大部分技术人员的命运类似，但如果连地球上几乎所有的开发人员都在用着先进的 <code>VSCode</code> 或 <code>Typescript</code>，动辄谈论着他们自己似乎也不太明白的 <code>DevOps</code> 或 <code>CI/CD</code> 时，抛开他们实际获得的与投入不成正比的赞许和回报不提，他们至少有些许自己的乐趣。从这个角度来说，现在是21世纪的第三个十年了，还要数据工程师们用着最原始的工具和很可能比他们都还老的查询语言，就有点惨无人道了。</p>
+<p>另一方面，现在是一个人人都可以做分析师的时代，套用一句时髦的话，每个人都是自己数据的第一责任人。数据是应用的魂，不管大的平台和小的软件，它们真正的价值在于用户和用户的数据，而很多新的业务、新的平台也都是基于数据见解被创造出来。</p>
+<p>这一点我深有体会，作为产品经理，我们会被要求在一开始构思时就定义产品需要的成功度量值（<code>Success Metric</code>），而为了达到目标，产品当然就需要设计一套机制来度量，这通常成为 遥测数据  （<code>Telemetry</code> ），这些遥测数据分为系统级别的（例如系统正常或失败的请求，错误信息，用户的地理位置和访问设备等），也有业务级别的（例如用户的访问流，停留时间，不同行为之间的关联等）。不要感到奇怪，任何产品都会有这样的数据收集的设计，唯一的区别在于它是否告知，以及它如何存储和管理这些数据，而这些会有相关的法律来约束。</p>
+<p>所以，我想说的是，谁都应该掌握一些数据查询和分析的能力，这可能会解决你现有的工作中的难题，也可能为你带来新的职业机会和思考，或者至少跟我一样，感受到那点纯粹的快乐。</p>
+<p>Kusto 这个名称在公开的文档中并不多，这个平台于 2018年的 <code>Microsoft Ignite</code> 会议上第一次展示，并且命名为 <code>Azure Data Explorer</code> ，它的<a href="https://learn.microsoft.com/en-us/azure/data-explorer/data-explorer-overview" target="_blank">官方定义</a>如下。</p>
+<blockquote>
+<p>Azure Data Explorer is a fully managed, high-performance, big data analytics platform that makes it easy to analyze high volumes of data in near real time. The Azure Data Explorer toolbox gives you an end-to-end solution for data ingestion, query, visualization, and management.</p>
+<p>By analyzing structured, semi-structured, and unstructured data across time series, and by using Machine Learning, Azure Data Explorer makes it simple to extract key insights, spot patterns and trends, and create forecasting models. Azure Data Explorer is scalable, secure, robust, and enterprise-ready, and is useful for log analytics, time series analytics, IoT, and general-purpose exploratory analytics.</p>
+<p>Azure Data Explorer capabilities are extended by other services built on its powerful query language, including <a href="https://learn.microsoft.com/en-us/azure/log-analytics/" target="_blank">Azure Monitor logs</a>, <a href="https://learn.microsoft.com/en-us/azure/application-insights/" target="_blank">Application Insights</a>, <a href="https://learn.microsoft.com/en-us/azure/time-series-insights/" target="_blank">Time Series Insights</a>, and <a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/microsoft-defender-endpoint" target="_blank">Microsoft Defender for Endpoint</a>.</p>
+</blockquote>
+<p>前面提到的 Application Insights 也升级换代，成为一个更加强大的 Azure 的产品线，叫做 <code>Log Analytics Workspace</code>， 不仅可以分析 Application Insights, 还包括 VM Insights,  Network Insights, Container Insights......  反正你能想到的，无论是自动产生的系统日志，还是自定义发送的事件或遥测数据，都可以分析，而其背后的英雄就是 Kusto 和 KQL 。</p>
+<p>同样， Azure Data Explorer 是一个商业化的产品，所有人都能享受到微软这套已经成熟的创新成果，快速升级你的业务数据分析平台，它当然还可以跟其他现有的数据库平台（例如Azure SQL, Comsos DB ，My SQL ）和大数据分析工具结合使用（例如Spark， Databricks等），将大数据分析的难度进一步降低。</p>
+<p>而作为 Kusto 的早期用户之一， 我仍然用这个名称来铭记它。</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="cover.html" class="navigation navigation-prev " aria-label="Previous page: 封面">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="part1/overview.html" class="navigation navigation-next " aria-label="Next page: 第一季">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"作者自序","level":"1.3","depth":1,"next":{"title":"第一季","level":"1.4","depth":1,"path":"part1/overview.md","ref":"part1/overview.md","articles":[{"title":"第一章：Kusto简介","level":"1.4.1","depth":2,"path":"part1/chapter1.md","ref":"part1/chapter1.md","articles":[]},{"title":"第二章：KQL核心","level":"1.4.2","depth":2,"path":"part1/chapter2.md","ref":"part1/chapter2.md","articles":[]},{"title":"第三章：数据可视化","level":"1.4.3","depth":2,"path":"part1/chapter3.md","ref":"part1/chapter3.md","articles":[]},{"title":"第四章：数据导入和导出","level":"1.4.4","depth":2,"path":"part1/chapter4.md","ref":"part1/chapter4.md","articles":[]},{"title":"第五章：外部应用集成","level":"1.4.5","depth":2,"path":"part1/chapter5.md","ref":"part1/chapter5.md","articles":[]},{"title":"第六章：自动化","level":"1.4.6","depth":2,"path":"part1/chapter6.md","ref":"part1/chapter6.md","articles":[]}]},"previous":{"title":"封面","level":"1.2","depth":1,"path":"cover.md","ref":"cover.md","articles":[]},"dir":"ltr"},"config":{"plugins":["honkit-plugin-google-analytics"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"analytics":{"uid":"G-PCF513CZTS"},"honkit-plugin-google-analytics":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"陈希章","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"大数据分析新玩法之Kusto宝典","language":"zh","gitbook":"*","description":"大数据分析，Kusto，Azure Data Explorer"},"file":{"path":"preface.md","mtime":"2023-01-06T14:51:57.281Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-01-06T14:52:07.656Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

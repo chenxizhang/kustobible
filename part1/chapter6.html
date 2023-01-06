@@ -1,0 +1,568 @@
+
+<!DOCTYPE HTML>
+<html lang="zh" >
+    <head>
+        <meta charset="UTF-8">
+        <title>第六章：自动化 · 大数据分析新玩法之Kusto宝典</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.5">
+        <meta name="author" content="陈希章">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+<!-- -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PCF513CZTS"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-PCF513CZTS');
+</script>
+ 
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="輸入並搜尋" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../cover.html">
+            
+                <a href="../cover.html">
+            
+                    
+                    封面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    作者自序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="overview.html">
+            
+                <a href="overview.html">
+            
+                    
+                    第一季
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="chapter1.html">
+            
+                <a href="chapter1.html">
+            
+                    
+                    第一章：Kusto简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="chapter2.html">
+            
+                <a href="chapter2.html">
+            
+                    
+                    第二章：KQL核心
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="chapter3.html">
+            
+                <a href="chapter3.html">
+            
+                    
+                    第三章：数据可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="chapter4.html">
+            
+                <a href="chapter4.html">
+            
+                    
+                    第四章：数据导入和导出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="chapter5.html">
+            
+                <a href="chapter5.html">
+            
+                    
+                    第五章：外部应用集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.6" data-path="chapter6.html">
+            
+                <a href="chapter6.html">
+            
+                    
+                    第六章：自动化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本書使用 HonKit 釋出
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >第六章：自动化</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第六章：自动化">第六章：自动化</h1>
+<blockquote>
+<p>作者：陈希章，2023年1月 于上海 
+专栏：<strong>大数据分析新玩法之Kusto宝典</strong> 第一季：一元初始
+反馈：<a href="mailto:ares@xizhang.com" target="_blank">ares@xizhang.com</a></p>
+</blockquote>
+<p>这一季的最后一篇，我们将来聊一下自动化的部分。鉴于这一季的目标是，让所有用户都能完成练习，即便你没有收费版 Azure Data Explorer 的订阅，所以这里涉及到的自动化方案也会有所挑选，将主要包含如下三种：</p>
+<ol>
+<li>使用命令行工具结合任务计划来自动化。</li>
+<li>使用PowerShell编写自定义代码来自动化。</li>
+<li>在PowerAutomate 中实现自动化。（需要有Microsoft 365订阅即可）。</li>
+</ol>
+<h2 id="使用命令行工具结合任何计划来自动化">使用命令行工具结合任何计划来自动化</h2>
+<p>此前我们提到了，Kusto 有网页版的查询编辑器，也有客户端版本的可视化编辑器，甚至还有一个命令行工具。</p>
+<h3 id="下载安装命令行工具">下载安装命令行工具</h3>
+<p>这个命令行工具可以通过 <a href="https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/" target="_blank">https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/</a> 下载到。它其实不是一个独立的工具，而是作为 <code>Microsoft.Azure.Kusto.Tools</code> 这个SDK包 的一部分。</p>
+<p><img src="../images/Pasted%20image%2020230102151111.png" alt></p>
+<p>点击上图中的 “<strong>Download package</strong>” 并完成下载后，你会得到一个 <code>.nupkg</code> 文件，下一步是需要将其解压缩。如果你使用的是Windows系统，你可以将其后缀名改为 <code>.zip</code> , 然后选中该文件，在系统自带的右键菜单中选择解压缩即可。</p>
+<p><img src="../images/Pasted%20image%2020230102152803.png" alt></p>
+<p>在解压缩得到的目录中，有一个 <strong>tools</strong> 的子目录</p>
+<p><img src="../images/Pasted%20image%2020230102153115.png" alt></p>
+<p>由于历史原因，这里有好多个版本的SDK，如何确定你应该用哪个版本呢？这个小问题可能有时候很挺麻烦，因为你得知道你当前电脑上面安装了哪个版本的.NET Framework（或其运行时 Runtime），这可不是容易的事情。</p>
+<ul>
+<li>PowerShell 7.3 - Built on .NET 7.0</li>
+<li>PowerShell 7.2 (LTS-current) - Built on .NET 6.0 (LTS-current)</li>
+<li>PowerShell 7.1 - Built on .NET 5.0</li>
+<li>PowerShell 7.0 (LTS) - Built on .NET Core 3.1 (LTS)</li>
+<li>PowerShell 6.2 - Built on .NET Core 2.1</li>
+<li>PowerShell 6.1 - Built on .NET Core 2.1</li>
+<li>PowerShell 6.0 - Built on .NET Core 2.0</li>
+<li>PowerShell 5.1 - Built on .NET Framework 4.7.2 </li>
+</ul>
+<p>鉴于从 <code>Windows 10</code> 后面的版本都已经默认安装了 PowerShell 5.1 这个版本，所以最简单的做法就是复制 <code>net472</code> 里面的文件即可。我一般会将其复制到一个更加容易访问到的目录，例如 <code>c:\tools\kusto</code>中。</p>
+<p><img src="../images/Pasted%20image%2020230102153723.png" alt></p>
+<p>这样就完成了下载和 “安装” 的过程，上图中的 <code>Kusto.cli.exe</code> 就是我们需要的命令行工具。</p>
+<h3 id="命令行工具的基本用法">命令行工具的基本用法</h3>
+<p>你可以通过 <code>c:\tools\kusto\kusto.cli.exe</code> 这样的路径来访问命令行工具，但我更喜欢为它定义一个别名，或者叫快捷方式，你可以在 Powershell 窗口中执行下面的命令。</p>
+<pre><code class="lang-powershell"><span class="hljs-string">&apos;New-Alias kusto &quot;C:\tools\kusto\Kusto.Cli.exe&quot;&apos;</span> | <span class="hljs-built_in">Out-File</span> <span class="hljs-literal">-Append</span> <span class="hljs-variable">$profile</span> <span class="hljs-literal">-Encoding</span> utf8;. <span class="hljs-variable">$profile</span>
+</code></pre>
+<h4 id="解释器模式">解释器模式</h4>
+<p>接下来就可以直接输入 <code>kusto</code> 这个命令来启动命令行工具了， 通过输入 <code>#help</code> 可以获取这个命令行支持的所有操作列表。</p>
+<p><img src="../images/Pasted%20image%2020230102155022.png" alt></p>
+<p>接下来可以试着连接到范例数据库，并且执行查询或命令</p>
+<p><code>#connect &quot;https://help.kusto.windows.net/Samples;Fed=true&quot;</code></p>
+<p>第一次执行这条命令的话，会弹出一个身份认证的对话框，你需要输入一个Microsoft 个人账号或工作账号来完成认证。</p>
+<p><code>StormEvents | project StartTime, EndTime, State, EventType | take 10</code></p>
+<p>执行这个查询，将会得到来自于 StormEvents 这个表中的10行数据，并且只返回四个字段。</p>
+<p><img src="../images/Pasted%20image%2020230102155431.png" alt></p>
+<p>这里除了执行查询，也可以执行控制命令，例如 <code>.show database</code> 等命令。</p>
+<blockquote>
+<p>请注意，控制命令不是这一季的重点，虽然为了保证课程连续性，偶尔会直接用这些命令，但我们不会专门且深入地讲解。如果你有兴趣，可以先自行参考 <a href="https://learn.microsoft.com/en-us/azure/data-explorer/kusto/management/" target="_blank">https://learn.microsoft.com/en-us/azure/data-explorer/kusto/management/</a> 的介绍，或者关注下一季的内容。</p>
+</blockquote>
+<p><img src="../images/Pasted%20image%2020230102160548.png" alt></p>
+<p>在这个命令行窗口，还有两个命令我经常用到，它们就是 <code>q</code> 和 <code>#cls</code> ， 前者用来退出当前命令行，后者用来清屏。</p>
+<p>除了在屏幕上查看之外，你还可以将查询结果保存到本地，请参考下面的查询。</p>
+<pre><code>#save top10.csv
+StormEvents | project StartTime, EndTime, State, EventType | take 10
+</code></pre><p>第一句命令是告知命令行工具，下一个查询的结果要保存到某个文件，然后第二个查询的结果就不显示在屏幕上，而是直接写入到文件了。</p>
+<p><img src="../images/Pasted%20image%2020230102161239.png" alt></p>
+<p>用Excel打开这个文件，就可以看到如下的结果。</p>
+<p><img src="../images/Pasted%20image%2020230102161320.png" alt></p>
+<p>你还可以将查询结果保存到剪贴板，而不是文件，这就需要用到 <code>#clip</code> 这个指令了。</p>
+<h4 id="执行模式">执行模式</h4>
+<p>以上的执行模式称为 ”解释器模式“， 就是你一次一次地输入命令，然后工具一行一行地给你解释并执行，返回结果等。一旦熟悉后，你就可以用更加强大的 ”执行模式” 一次执行多个指令了。</p>
+<p><code>kusto &quot;https://help.kusto.windows.net/samples;fed=true&quot; -execute:&quot;#save top10.csv&quot; -execute:&quot;StormEvents | take 10&quot;</code> </p>
+<p>上面范例中的 execute 参数是可以多次输入的，其实就相当于依次输入了多个指令，然后命令行一次帮你执行。</p>
+<blockquote>
+<p>-execute  还可以简写为 -e </p>
+</blockquote>
+<h4 id="脚本模式">脚本模式</h4>
+<p>熟悉了以上玩法，你还可以将你常用的命令组合起来，先写到一个文本文件中，然后批量执行，例如下面这个查询，就模拟了多个查询语句。</p>
+<pre><code class="lang-txt">#save top10States.csv
+StormEvents | summarize count() by State | top 10 by count_
+
+#save top10Eventtypes.csv
+StormEvents | summarize count() by EventType | top 10 by count_
+</code></pre>
+<p>而要执行这个脚本文件，只需要用一句命令即可。</p>
+<p><code>kusto &quot;https://help.kusto.windows.net/samples;fed=true&quot; -script:&quot;C:\tools\query.txt&quot;</code></p>
+<p><img src="../images/Pasted%20image%2020230102162657.png" alt></p>
+<p><code>-scirpt</code> 这个参数会把脚本文件中每一行当作一个指令执行，但如果你的脚本本身就是多行的，你希望它把多行的指令当作一个指令执行，这就需要用到 <code>-scriptml</code> 这个参数了，下面是另外一个范例。</p>
+<pre><code class="lang-kql">.set-or-append async StormEvents &lt;|
+    cluster(&apos;help&apos;).database(&apos;Samples&apos;).StormEvents
+    | project
+        StartTime,
+        EventId,
+        EndTime,
+        State,
+        EventType
+</code></pre>
+<p>上面的脚本是想当前的数据库中 StormEvents 表插入数据，如果该表不存在，则创建它。请注意，你需要将这个命令在你自己的免费群集中执行，因为默认的 <code>help</code> 群集，我们都没有权限插入数据。</p>
+<p><code>kusto &quot;https://kvca2vj00hnuj8btx0kwy7.australiaeast.kusto.windows.net/default;fed=true&quot; -scriptml:&quot;ml.txt&quot;</code></p>
+<p><img src="../images/Pasted%20image%2020230102165822.png" alt></p>
+<h4 id="通过任务计划自动化">通过任务计划自动化</h4>
+<p>我相信通过上面的例子，你已经对命令行工具及其三种模式（解释器模式，执行模式，脚本模式）都有了一定的了解，这一节的最后我们来结合Windows自带的任务计划来实现自动化。假设我们的任务是，每天晚上的8点，执行一次上次演示过的数据导入工作。</p>
+<p>你可以通过下面几行 Powershell 命令来创建这个计划任务。 请注意，一个任务（Task） 中可以执行好多个操作（Action）， 所以合理使用的话，下面这样的工具可以编排出非常复杂的任务。</p>
+<pre><code class="lang-powershell"><span class="hljs-variable">$action</span> = <span class="hljs-built_in">New-ScheduledTaskAction</span> <span class="hljs-literal">-Execute</span> <span class="hljs-string">&quot;c:\tools\kusto\kusto.cli.exe&quot;</span> <span class="hljs-literal">-Argument</span> <span class="hljs-string">&apos;&quot;https://kvca2vj00hnuj8btx0kwy7.australiaeast.kusto.windows.net/default;fed=true&quot; -scriptml:&quot;ml.txt&quot;&apos;</span> <span class="hljs-literal">-WorkingDirectory</span> <span class="hljs-string">&quot;c:\users\chenxizhang&quot;</span>
+
+<span class="hljs-variable">$trigger</span> = <span class="hljs-built_in">New-ScheduledTaskTrigger</span> <span class="hljs-literal">-Daily</span> <span class="hljs-literal">-At</span> <span class="hljs-string">&quot;20:00:00&quot;</span>
+
+<span class="hljs-variable">$task</span> = <span class="hljs-built_in">New-ScheduledTask</span> <span class="hljs-literal">-Action</span> <span class="hljs-variable">$action</span> <span class="hljs-literal">-Trigger</span> <span class="hljs-variable">$trigger</span>
+
+<span class="hljs-built_in">Register-ScheduledTask</span> ImportDataEveryday <span class="hljs-literal">-InputObject</span> <span class="hljs-variable">$task</span>
+</code></pre>
+<p>创建成功后，可以通过输入 <code>taskschd.msc</code> ，然后在根目录下面找到这个计划任务。</p>
+<p><img src="../images/Pasted%20image%2020230102173919.png" alt></p>
+<h2 id="使用powershell-编写自定义代码来自动化">使用PowerShell 编写自定义代码来自动化</h2>
+<p>其实我们在第一节（通过命令行来实现自动化）之中，已经大量地使用了 PowerShell，但这一节要展示的是更加高级一点的做法，就是编写自己的一个PowerShell 命令来实现定制化的任务。</p>
+<p>事情还是要从命令行工具这里的源头说起。<code>Kusto.cli.exe</code> 其实就是一个基于.NET Framework编写好的应用程序，而它依赖的一个最关键的组件就是 <code>Kusto.data.dll</code>。</p>
+<p><img src="../images/Pasted%20image%2020230102175823.png" alt></p>
+<p>所以，如果我们想要自己实现特定的逻辑，完全可以直接调用 <code>Kusto.data.dll</code> 这个组件，Powershell拥有这个天生的优势，因为它可以直接加载 .NET 组件。</p>
+<pre><code class="lang-powershell"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Run-KustoQuery</span></span> {
+    <span class="hljs-function">[<span class="hljs-type">CmdletBinding</span>()]</span>
+    <span class="hljs-keyword">param</span> (
+        [<span class="hljs-type">Parameter</span>(<span class="hljs-type">ValueFromPipeline</span> = <span class="hljs-variable">$true</span>, <span class="hljs-type">Mandatory</span> = <span class="hljs-variable">$true</span>)]
+        [<span class="hljs-built_in">string</span>[]]<span class="hljs-variable">$date</span>,
+        [<span class="hljs-built_in">string</span>]<span class="hljs-variable">$scriptfile</span>,
+        [<span class="hljs-built_in">string</span>]<span class="hljs-variable">$outputfolder</span>
+    )
+
+    <span class="hljs-keyword">BEGIN</span> {
+        <span class="hljs-variable">$packagesRoot</span> = <span class="hljs-string">&quot;C:\tools\kusto&quot;</span>
+        [<span class="hljs-type">System.Reflection.Assembly</span>]::LoadFrom(<span class="hljs-string">&quot;<span class="hljs-variable">$packagesRoot</span>\Kusto.Data.dll&quot;</span>) 
+        <span class="hljs-variable">$clusterUrl</span> = <span class="hljs-string">&quot;https://help.kusto.windows.net;Fed=true&quot;</span>
+        <span class="hljs-variable">$databaseName</span> = <span class="hljs-string">&quot;Samples&quot;</span>
+        <span class="hljs-variable">$kcsb</span> = <span class="hljs-built_in">New-Object</span> Kusto.Data.KustoConnectionStringBuilder `
+            (<span class="hljs-variable">$clusterUrl</span>, <span class="hljs-variable">$databaseName</span>)
+        <span class="hljs-variable">$queryProvider</span> = [<span class="hljs-type">Kusto.Data.Net.Client.KustoClientFactory</span>]::CreateCslQueryProvider(<span class="hljs-variable">$kcsb</span>)
+        <span class="hljs-variable">$crp</span> = <span class="hljs-built_in">New-Object</span> Kusto.Data.Common.ClientRequestProperties
+        <span class="hljs-variable">$crp</span>.ClientRequestId = <span class="hljs-string">&quot;MyPowershellScript.ExecuteQuery.&quot;</span> + [<span class="hljs-type">Guid</span>]::NewGuid().ToString()
+        <span class="hljs-variable">$crp</span>.SetOption([<span class="hljs-type">Kusto.Data.Common.ClientRequestProperties</span>]::OptionServerTimeout, [<span class="hljs-type">TimeSpan</span>]::FromSeconds(<span class="hljs-number">90</span>))
+    }
+
+    <span class="hljs-keyword">PROCESS</span> {
+        <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$d</span> <span class="hljs-keyword">in</span> <span class="hljs-variable">$date</span>) {
+            <span class="hljs-variable">$query</span> = (<span class="hljs-built_in">Get-Content</span> <span class="hljs-variable">$scriptfile</span> <span class="hljs-literal">-Raw</span>).Replace(<span class="hljs-string">&quot;_date_&quot;</span>, <span class="hljs-variable">$d</span>)
+            <span class="hljs-variable">$reader</span> = <span class="hljs-variable">$queryProvider</span>.ExecuteQuery(<span class="hljs-variable">$query</span>, <span class="hljs-variable">$crp</span>)
+            <span class="hljs-variable">$dataTable</span> = [<span class="hljs-type">Kusto.Cloud.Platform.Data.ExtendedDataReader</span>]::ToDataSet(<span class="hljs-variable">$reader</span>).Tables[<span class="hljs-number">0</span>]
+            <span class="hljs-variable">$dataView</span> = <span class="hljs-built_in">New-Object</span> System.Data.DataView(<span class="hljs-variable">$dataTable</span>)
+            <span class="hljs-variable">$dataView</span> | <span class="hljs-built_in">Export-Csv</span> <span class="hljs-string">&quot;<span class="hljs-variable">$outputfolder</span>\\<span class="hljs-variable">$d</span>.csv&quot;</span> `
+                <span class="hljs-literal">-NoTypeInformation</span> <span class="hljs-literal">-Encoding</span> utf8
+        }
+
+    }
+    <span class="hljs-keyword">END</span> {}
+
+}
+</code></pre>
+<p>这段代码定义了一个PowerShell 的函数命令（Cmdlet），它接受三个参数， 首先是一组日期，然后是一个脚本文件（查询），以及输出文件。它会连接到 <code>help</code> 这个群集的 <code>samples</code> 数据库，然后循环这些日期，替换掉脚本文件中的日期占位符，然后依次执行，最后输出到对应的目录中去。</p>
+<p>将上述代码复制到 PowerShell 窗口，然后运行如下的命令：<code>Run-KustoQuery -date &quot;2007-1-1&quot; -scriptfile .\getdata.txt -outputfolder c:\temp</code></p>
+<p><img src="../images/Pasted%20image%2020230102182140.png" alt></p>
+<p>如果给 date 参数输入多个值，则会生成多个 csv 文件。</p>
+<p><img src="../images/Pasted%20image%2020230102182327.png" alt></p>
+<p>结合PowerShell的编程能力，理论上你可以设计出任意复杂的自动化任务来。</p>
+<h4 id="计划任务">计划任务</h4>
+<p>你还可以将这个Powershell 命令的脚本组织成一个独立的脚本文件，然后同样通过计划任务的方式来执行这个脚本。</p>
+<pre><code class="lang-powershell"><span class="hljs-variable">$action</span> = <span class="hljs-built_in">New-ScheduledTaskAction</span> <span class="hljs-literal">-Execute</span> <span class="hljs-string">&quot;powershell.exe&quot;</span> <span class="hljs-literal">-Argument</span> <span class="hljs-string">&quot;-file getdata.ps1&quot;</span> <span class="hljs-literal">-WorkingDirectory</span> <span class="hljs-string">&quot;c:\users\chenxizhang&quot;</span>
+
+<span class="hljs-variable">$trigger</span> = <span class="hljs-built_in">New-ScheduledTaskTrigger</span> <span class="hljs-literal">-Daily</span> <span class="hljs-literal">-At</span> <span class="hljs-string">&quot;20:00:00&quot;</span>
+<span class="hljs-variable">$task</span> = <span class="hljs-built_in">New-ScheduledTask</span> <span class="hljs-literal">-Action</span> <span class="hljs-variable">$action</span> <span class="hljs-literal">-Trigger</span> <span class="hljs-variable">$trigger</span>
+<span class="hljs-built_in">Register-ScheduledTask</span> ImportDataByPowerShell <span class="hljs-literal">-InputObject</span> <span class="hljs-variable">$task</span>
+</code></pre>
+<h2 id="使用power-automate-进行自动化">使用Power Automate 进行自动化</h2>
+<p>上面我们讲解了两种自动化的方式，他们的共同特点都是在本地计算机运行，缺点是如果真想自动化，你的电脑就得一直开着。而如果你拥有Microsoft 365的账号，那么就可以实现更加自由的自动化了。</p>
+<p>这个解决方案就是 Power Automate，它可以实现云端的自动化，并且不需要编写代码。</p>
+<p><img src="../images/Pasted%20image%2020230102183559.png" alt></p>
+<p>点击 “创建”，选择 “计划的云端流”</p>
+<p><img src="../images/Pasted%20image%2020230102184338.png" alt></p>
+<p>搜索 “Kusto” 或者 “Azure Data Explorer”，可以看到有如下可用的操作</p>
+<p><img src="../images/Pasted%20image%2020230102184901.png" alt></p>
+<p>本例中，我们选择 “运行异步控制命令” 这个操作，并且进行如下的设置。请注意，这里的群集URL，需要设置为你自己的免费群集地址。</p>
+<p><img src="../images/Pasted%20image%2020230102185232.png" alt></p>
+<p>点击 “保存” 即可，这个流程将自动在晚上八点执行。</p>
+<p><img src="../images/Pasted%20image%2020230102190019.png" alt></p>
+<p>如果你想在自动化流程中查询数据，然后保存为 csv 文件，然后发送邮件给某人，可以按照下面这样的方式设计即可。这里的关键一步就是根据查询结果生成CSV表格，有现成的操作可用。</p>
+<p><img src="../images/Pasted%20image%2020230102190708.png" alt></p>
+<p>最后， 利用 PowerAutomate 提供的内置组件，你甚至可以运行查询，呈现一个图表，最后把这个图表还可以通过其他方式发送给自己或其他人。</p>
+<p><img src="../images/Pasted%20image%2020230103111324.png" alt></p>
+<p>第一次组件会返回图片的内容，然后我用了一个变量，来生成一个可以在邮件中展示的图片的dataUri，它的公式定义大致是下面这样的：</p>
+<p><code>concat(&apos;data:image/png;base64,&apos;,outputs(&apos;运行_KQL_查询并呈现图表&apos;)?[&apos;body/attachmentContent&apos;])</code></p>
+<p>然后，在邮件正文中，定义了一个图片的标签。注意，这里一定要切换到 html 模式。</p>
+<p><code>&lt;img src=&apos;@{variables(&apos;imageurl&apos;)}&apos; /&gt;&lt;br&gt;</code></p>
+<p>与此同时，我还将这个图片作为附件插入到了邮件中，这样一顿操作后，我在后续收到邮件中就看到如下的效果了。</p>
+<p><img src="../images/Pasted%20image%2020230103111656.png" alt></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="chapter5.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 第五章：外部应用集成">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第六章：自动化","level":"1.4.6","depth":2,"previous":{"title":"第五章：外部应用集成","level":"1.4.5","depth":2,"path":"part1/chapter5.md","ref":"part1/chapter5.md","articles":[]},"dir":"ltr"},"config":{"plugins":["honkit-plugin-google-analytics"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"analytics":{"uid":"G-PCF513CZTS"},"honkit-plugin-google-analytics":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"陈希章","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"大数据分析新玩法之Kusto宝典","language":"zh","gitbook":"*","description":"大数据分析，Kusto，Azure Data Explorer"},"file":{"path":"part1/chapter6.md","mtime":"2023-01-06T14:51:57.281Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-01-06T14:52:07.656Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
