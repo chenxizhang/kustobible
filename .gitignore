@@ -2,3 +2,4 @@ node_modules
 _book
 *.pdf
 *.mobi
+yarn.lock
