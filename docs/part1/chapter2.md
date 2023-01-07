@@ -760,7 +760,7 @@ Kusto 的查询通常都只返回一个结果集，但利用 `fork` 和 `facet` 
 
 fork 直接就是多个查询并行执行, 输出结果
 
-```Kql
+```
 StormEvents
 | fork
 	(where StartTime >= datetime('2007-1-1') | take 100)
@@ -774,7 +774,7 @@ StormEvents
 
 facet 是根据几个字段（下例中的 State，EventType，Source，做一个计数，在前一句where的基础上）做一个基本统计, 并继续输出一个主要结果 （with后面的语句）
 
-```kql
+```
 StormEvents
 | where State startswith "A" and EventType has "Heavy"
 | facet by State, EventType,Source

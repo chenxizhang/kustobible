@@ -21,7 +21,7 @@
 
 上图是一个简单的KQL 查询，它根据选定的Time range （在界面上设置了，没有写到查询中），查询 requests这个表，按照每10分钟一个窗口，统计一批查询的平均响应时间（duration），并且通过一个时间图表（timechart）展示出来。
 
-```kql
+```
 requests
 | summarize avgRequestDuration=avg(duration) by bin(timestamp, 10m) 
 | render timechart

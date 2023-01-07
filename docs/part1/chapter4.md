@@ -94,7 +94,7 @@
 
 请等待导入完成后，点击 ”Close“ 按钮关闭当前窗口，进入查询窗口，我们通过如下的查询来验证一下数据。
 
-```kql
+```
 Processes
 | summarize sum(VM) by Company
 | render piechart
@@ -180,7 +180,7 @@ gzip gps.csv
 
 还记得我之前提醒大家在导入的界面上复制操作命令吗？ 如果你没有忘记保存起来，那么它看起来是像下面这样的。
 
-```kql
+```
 // 创建表
 ////////////////////////////////////////////////////////////
 .create table ['Processes']  (['Name']:string, ['SI']:long, ['Handles']:long, ['VM']:long, ['WS']:long, ['PM']:long, ['NPM']:long, ['Path']:string, ['CommandLine']:string, ['Parent']:string, ['Company']:string, ['CPU']:real, ['FileVersion']:string, ['ProductVersion']:string, ['Description']:string, ['Product']:string, ['__NounName']:string, ['SafeHandle']:string, ['Handle']:long, ['BasePriority']:long, ['ExitCode']:string, ['HasExited']:bool, ['StartTime']:datetime, ['ExitTime']:string, ['Id']:long, ['MachineName']:string, ['MaxWorkingSet']:long, ['MinWorkingSet']:long, ['Modules']:string, ['NonpagedSystemMemorySize64']:long, ['NonpagedSystemMemorySize']:long, ['PagedMemorySize64']:long, ['PagedMemorySize']:long, ['PagedSystemMemorySize64']:long, ['PagedSystemMemorySize']:long, ['PeakPagedMemorySize64']:long, ['PeakPagedMemorySize']:long, ['PeakWorkingSet64']:long, ['PeakWorkingSet']:long, ['PeakVirtualMemorySize64']:long, ['PeakVirtualMemorySize']:long, ['PriorityBoostEnabled']:bool, ['PriorityClass']:string, ['PrivateMemorySize64']:long, ['PrivateMemorySize']:long, ['ProcessorAffinity']:long, ['SessionId']:long, ['StartInfo']:string, ['Threads']:string, ['HandleCount']:long, ['VirtualMemorySize64']:long, ['VirtualMemorySize']:long, ['EnableRaisingEvents']:bool, ['StandardInput']:string, ['StandardOutput']:string, ['StandardError']:string, ['WorkingSet64']:long, ['WorkingSet']:long, ['SynchronizingObject']:string, ['MainModule']:string, ['PrivilegedProcessorTime']:timespan, ['TotalProcessorTime']:timespan, ['UserProcessorTime']:timespan, ['ProcessName']:string, ['MainWindowHandle']:long, ['MainWindowTitle']:string, ['Responding']:bool, ['Site']:string, ['Container']:string)
@@ -238,7 +238,7 @@ evaluate infer_storage_schema(options)
 
 下面再来看一个更加复杂一点的，把计算结果追加到目标表中。
 
-```kql
+```
 .set-or-append StateSummarization <|
     cluster('help').database('Samples').StormEvents
     | summarize

@@ -127,7 +127,7 @@ StormEvents | summarize count() by EventType | top 10 by count_
 
 `-scirpt` 这个参数会把脚本文件中每一行当作一个指令执行，但如果你的脚本本身就是多行的，你希望它把多行的指令当作一个指令执行，这就需要用到 `-scriptml` 这个参数了，下面是另外一个范例。
 
-```kql
+```
 .set-or-append async StormEvents <|
     cluster('help').database('Samples').StormEvents
     | project
