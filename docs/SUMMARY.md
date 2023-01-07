@@ -2,6 +2,7 @@
 
 * [简介](README.md)
 * [作者自序](preface.md)
+* [修订历史](changelog.md)
 * [第一季：一元初始](part1/overview.md)
     * [第一章：Kusto简介](part1/chapter1.md)
         * [基本概念](part1/chapter1.md#基本概念)
