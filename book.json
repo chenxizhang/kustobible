@@ -2,7 +2,7 @@
     "title": "大数据分析新玩法之Kusto宝典",
     "author": "陈希章",
     "description": "大数据分析，Kusto，Azure Data Explorer",
-    "language": "zh",
+    "language": "zh-hans",
     "root": "docs",
     "plugins": [
         "honkit-plugin-google-analytics"
