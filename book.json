@@ -5,11 +5,17 @@
     "language": "zh-hans",
     "root": "docs",
     "plugins": [
-        "honkit-plugin-google-analytics"
+        "honkit-plugin-google-analytics",
+        "add-js"
     ],
     "pluginsConfig": {
         "analytics": {
             "uid": "G-PCF513CZTS"
+        },
+        "add-js": {
+            "js": [
+                "./custom.js"
+            ]
         }
     }
 }
