@@ -14,7 +14,7 @@
         },
         "add-js": {
             "js": [
-                "../scripts/custom.js"
+                "../scripts/clarity.js"
             ]
         }
     }
