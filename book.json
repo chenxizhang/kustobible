@@ -14,7 +14,7 @@
         },
         "add-js": {
             "js": [
-                "../custom.js"
+                "../scripts/custom.js"
             ]
         }
     }
