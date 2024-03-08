@@ -4,6 +4,7 @@
     "description": "大数据分析，Kusto，Azure Data Explorer",
     "language": "zh-hans",
     "root": "docs",
+    "imagecdnprefix": "https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/", // 这个指向你的图片CDN地址
     "plugins": [
         "honkit-plugin-google-analytics",
         "add-js"
