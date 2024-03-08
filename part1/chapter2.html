@@ -643,7 +643,7 @@
 <blockquote>
 <p>📣控制命令都是以 . 开头的，以便区别于KQL 查询。本书暂时不会对控制命令的细节进行展开，你只要在需要时跟着使用它们即可。</p>
 </blockquote>
-<p><img src="../images/Pasted%20image%2020230105134923.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105134923.png" alt></p>
 <p>这里的 Attribute 其实指的就是字段 （Column），通过上表你可以看到所有的字段名称，数据类型，是否做了索引或压缩，所占的存储空间，甚至还能知道当前使用的引擎版本。</p>
 <p>这一步的时候，我建议你花一点时间认真看一下字段名称，并且在你的脑海中尝试建立对他们的一个直观认识，并且开始想象他们会是什么样的数据，可以用来产生哪些分析的场景和效果。例如这个表中，它有下面的字段，我把我在第一眼看到时的联想也记录下来。</p>
 <table>
@@ -769,21 +769,21 @@
 </table>
 <p>所以，其实你可以归类一下，这个表中有时间信息（多个时间可以组成一个时间轴，描述事件发生的轨迹等），地理信息（包括精准的经纬度，以及具体的州县），分类信息，以及损失数据（可以用来做聚合计算等）。</p>
 <p>接下来，你可能会有兴趣了解一下，这些个字段到底包含了多少数据呢，分别在分布上有什么特征呢？你可以尝试一下 <code>.show table StormEvents column statistics</code> 这个命令。</p>
-<p><img src="../images/Pasted%20image%2020230105143716.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105143716.png" alt></p>
 <p>通过这个结果，我们可以了解，这个表的行数应该有 59066， 然后针对那些不是唯一值的字段（剔除了时间字段，地理字段等），你可以看到他们各自的基数（Cardinality），这个可以表示某个列唯一值的数量，例如 <code>State</code> 这个字段，其实它只有 67 个唯一的值。通过这个值的大小（或者他的范围），你可以大致知道哪些字段用来做分类汇总会更加合适。通常，这个值越小的话，查询和聚合计算的效率都会更高。</p>
 <p>上表中还可以看出空值的行数，以及占总行数的比例。空值的单元格是无法避免的，但它会影响聚合计算，所以你需要额外小心空值比较多的字段。</p>
 <p>咱们继续探索吧。通过 <code>.show table StormEvents details</code> , 你可以从另外一个侧面了解到这个表的一些信息，例如缓存的规则，数据存储的规则，合并策略等。</p>
-<p><img src="../images/Pasted%20image%2020230105145137.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105145137.png" alt></p>
 <p>有点意思，如果你还不过瘾，其实还有更多可以探索的。</p>
-<p><img src="../images/Pasted%20image%2020230105150843.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105150843.png" alt></p>
 <p>限于篇幅我们就不一一展开了，目前来说已经够用。接下来我就会对数据进行一些抽样，实际地考察一下，到底包含什么样的数据。</p>
 <h3 id="数据取样">数据取样</h3>
 <p>取样的意思就是我随便看看，不要小看这种探索，你可以快速地浏览一下数据，甚至随机抽样，这样可以对数据有一个直观的认识，可以启发你构思后续的分析。</p>
 <h4 id="take-limit">take, limit</h4>
 <p>这两个操作符（operator）其实是等价的，它们就是从目标数据集中抽取指定的行数返回。有意思的是，每次执行的结果可能是不一样的，除非你的结果集本身是排好序的，但这样做通常没有必要，我们反而是希望看到这种随机性。</p>
 <p>如下例子，我在不同的浏览器窗口运行同一个命令，看到的结果是不一样的。</p>
-<p><img src="../images/Pasted%20image%2020230105151557.png" alt>
-<img src="../images/Pasted%20image%2020230105151710.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105151557.png" alt>
+<img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105151710.png" alt></p>
 <p>但是，如果你在同一个浏览器窗口，你可能发现多次运行的话，结果可能是一样的。这是因为当前这个session 会有缓存的原因。Kusto既然如此聪明，它不会笨到既然知道你只是为了取样，而每次都真的执行查询的。</p>
 <blockquote>
 <p>如果结果集本身是排好序的，那么每次只会取最开始的指定行数，这是能得到一致的结果的。有兴趣你可以尝试一下 <code>StormEvents | order by StartTime asc  | take 10</code> 。</p>
@@ -792,17 +792,17 @@
 <p>sample 跟 take的区别在于，它永远是随机返回指定的行数，而不是从头部开始取。请尝试在不同窗口执行  <code>StormEvents |  sample 10</code> 。</p>
 <p>除了指定一个精确的返回行数，我们可能有时候会想，能否给我返回差不多1%的数据吧。这个可以通过 rand 这个操作符来实现。</p>
 <p><code>StormEvents | where rand() &lt; 0.01</code></p>
-<p><img src="../images/Pasted%20image%2020230105154021.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105154021.png" alt></p>
 <p>rand 这个操作符本身是用来产生一个随机数的，但这里的用法更妙。</p>
 <h4 id="distinct-sample-distinct">distinct, sample-distinct</h4>
 <p>另外一个常见的探索数据的场景，就是我们想了解一下某个列具体有哪些可用的值。这个时候就可用 <code>distinct</code> 操作符了。你也可以指定多个列， <code>distinct</code> 将返回这多个列组合起来不重复的值。</p>
-<p><img src="../images/Pasted%20image%2020230105154235.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105154235.png" alt></p>
 <p>distinct 会返回所有的不重复值。那么，如果你想在其中随机挑选几个出来，就可以用 <code>sample-distinct</code> 了，请看下面的例子。</p>
-<p><img src="../images/Pasted%20image%2020230105154351.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105154351.png" alt></p>
 <h4 id="count-max-min">count, max, min</h4>
 <p>在进行数据探索时，我还经常希望了解某个字段的行数，最大值和最小值之类的。这时候会用到 count, max, min 这几个聚合函数。下面是一个简单的实例。</p>
 <p><code>StormEvents | summarize count(), max(StartTime), min(StartTime)</code></p>
-<p><img src="../images/Pasted%20image%2020230105155155.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105155155.png" alt></p>
 <p>数据的探索部分就到这里。下面我们从几个不同的角度来逐步展开数据查询的基本用法。</p>
 <h2 id="两个注意事项">两个注意事项</h2>
 <p>开始之前，我希望你对 Kusto 的查询的两个注意事项有所了解，它们分别是：</p>
@@ -907,7 +907,7 @@ StormEvents
 </code></pre><h5 id="文本比较运算">文本比较运算</h5>
 <p>文本的比较运算在 Kusto 中是非常丰富的，下面有一个完整的表格。我最常用的有 <code>==</code> ， <code>has</code>  这两个，但其实每一个都值得了解一下。</p>
 <p>请注意，带有 <code>~</code> 后缀的运算符是不区分大小写的，而带有 <code>_cs</code> 后缀的，则是区分大小写的。</p>
-<p><img src="../images/Pasted%20image%2020230105162834.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105162834.png" alt></p>
 <p>在Kusto查询中，你可以用两个单引号（<code>&apos;</code>) 定义一个字符串，也可以用两个双引号（<code>&quot;</code>），本质上没有区别。这个在很多编程语言也是如此设计。我习惯用单引号，因为这样输入更快一点，你不需要按住 <code>Shift</code> 键来输入双引号。另外，在单引号定义的字符串中，可以有双引号，反之亦然。</p>
 <h5 id="数值比较运算">数值比较运算</h5>
 <p>数值比较运算相对简单，事实上它跟日期很类似，可以用 <code>between</code> 和 <code>!between</code> 来判断是否在一个连续的范围，也可以直白地，用 <code>&gt;</code>，<code>&gt;=</code> ，<code>&lt;</code>，<code>&lt;=</code> ，<code>==</code> ， <code>!=</code> 即可，当然还可以用 <code>in</code>， <code>!in</code> 来比较是否在一个不连续的列表值中。</p>
@@ -960,7 +960,7 @@ StormEvents
 StormEvents
 | search kind=case_sensitive State:&apos;UTAH&apos; or (&apos;P*&apos; or &apos;*h&apos;)
 </code></pre><p>这个结果集会多出来一个字段， <code>$table</code> 显示表的名称。</p>
-<p><img src="../images/Pasted%20image%2020230105213404.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105213404.png" alt></p>
 <h4 id="自由搜索">自由搜索</h4>
 <p>这种搜索就更牛了。它甚至可以在整个数据库中随便搜索，当然也可以指定多个表。不过，据我观察，速度可能会比较慢，慎重使用。</p>
 <pre><code>// 在整个数据库中所有表中搜索 包含 UTAH 的记录
@@ -975,13 +975,13 @@ search in ( StormEvents, C*) &apos;UTAH&apos;
 // 在指定的 StormEvents 以及C开头的表中搜索包含UTAH 和以P字符开头的记录
 search in ( StormEvents, C*) &apos;UTAH&apos; and &apos;P*&apos;
 </code></pre><p>如果涉及到多表查询，返回的结果集会把多个表的字段都合并起来，形成一个很大的合集。并且第一个字段同样为 <code>$table</code> ，也就是表的名称。</p>
-<p><img src="../images/Pasted%20image%2020230105212456.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105212456.png" alt></p>
 <h3 id="find">find</h3>
 <p>这个更有意思。它很像 <code>search</code> 的第二种用法，不过它的返回值不一样。</p>
 <h4 id="当前数据库查找">当前数据库查找</h4>
 <pre><code>find in (*) where State == &apos;UTAH&apos; or InjuriesDirect &gt;1
 </code></pre><p>find的结果集除了会列出条件列（例如上面的 State 和 InjuriesDirect）之外，还有两个列，source<em> 表示来源表，而 pack</em> 则表示符合条件的行的一个打包的结果，它会用一个 <code>json</code> 格式表示。这个在Kusto 中其实叫做 <code>dynamic</code> 数据类型。</p>
-<p><img src="../images/Pasted%20image%2020230105214318.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230105214318.png" alt></p>
 <h4 id="跨数据库查找">跨数据库查找</h4>
 <p>它还可以跨数据库（用database关键字），跨群集（用 cluster关键字）进行搜索。额的神啊，Kusto 你咋不上天呢？下面是一些简单的</p>
 <pre><code>find in (Table1, Table2, Table3) where Fruit==&quot;apple&quot;
@@ -999,7 +999,7 @@ where * has &quot;Kusto&quot;
     and EventType == &quot;Flood&quot;
     and BeginLocation != EndLocation
 | project DamageProperty, EventType, BeginLocation, EndLocation
-</code></pre><p><img src="../images/Pasted%20image%2020230106133236.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106133236.png" alt></p>
 <p>在投射的过程中，你可以对列进行重命名，例如下面这样。</p>
 <pre><code>StormEvents
 | where DamageProperty &gt; 0
@@ -1020,7 +1020,7 @@ where * has &quot;Kusto&quot;
     and EventType == &quot;Flood&quot;
     and BeginLocation != EndLocation
 | project-keep State, B*
-</code></pre><p><img src="../images/Pasted%20image%2020230106134314.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106134314.png" alt></p>
 <p>反过来，如果你想排除一些列，则可以用 <code>project-away</code> 这个操作符。</p>
 <pre><code>StormEvents
 | where DamageProperty &gt; 0
@@ -1089,16 +1089,16 @@ where * has &quot;Kusto&quot;
     TotalDamage = sum(DamageCrops) + sum(DamageProperty)
     by State
 </code></pre><p>运行此查询可以得到每个州的暴风雨发生的次数，以及总的财产损失数量，不管是农作物还是财产损失。</p>
-<p><img src="../images/Pasted%20image%2020230106142140.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106142140.png" alt></p>
 <p>这里的关键是熟练掌握各种聚合函数，下表列出了所有的统计聚合函数，也是我们用的最多的。</p>
-<p><img src="../images/Pasted%20image%2020230106143947.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106143947.png" alt></p>
 <p>在这里我专门介绍一个在业务分析中很有用的一个统计函数，<code>percentile</code> ，它用来返回一组数据的百分位估计值。</p>
 <h4 id="percentile-percentiles">percentile, percentiles</h4>
 <p>例如我们有一批数据，表示每个暴风雨带来的损失。而我们想要知道，大部分的案例有多少损失。具体来说，例如我们想问，90% 的案例是多少损失以下呢？这在业务分析中就是要计算 <code>P90</code> 。</p>
 <pre><code>StormEvents
 | summarize percentile(DamageCrops,90) by State
 </code></pre><p>通过调整第二个参数值，你还可以得到P50, P75, P99等，只要你愿意都可以。</p>
-<p><img src="../images/Pasted%20image%2020230106145804.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106145804.png" alt></p>
 <p>当然，如果你真的是想一次性计算多个 percentile，你可以直接用 <code>percentiles</code> 这个聚合函数即可。</p>
 <pre><code>StormEvents
 | summarize
@@ -1113,12 +1113,12 @@ where * has &quot;Kusto&quot;
 | summarize
     count() by bin( StartTime, 1d)
 </code></pre><p>这个例子是以 StartTime 这个字段 ，按照每天进行聚合，统计发生暴风雨的次数。</p>
-<p><img src="../images/Pasted%20image%2020230106150900.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106150900.png" alt></p>
 <p>针对非日期数据，另外两个函数可能也比较有用。 他们是 <code>bin_at</code> 固定大小分桶，以及 <code>bin_auto</code> 自动分桶。</p>
 <p><code>bin_at</code> 是规定每个桶里面可以有多少个值，然后再按照这些值进行分类汇总。例如</p>
 <pre><code>StormEvents
 | summarize count() by bin_at( DamageCrops, 500, 0)
-</code></pre><p><img src="../images/Pasted%20image%2020230106152556.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106152556.png" alt></p>
 <p>而 bin_auto 可能就是 bin_at 的一个特殊版本吧。它通过在查询之前设置一个环境变量来实现自动分桶，这样在每次执行 bin_auto 时就不需要单独再指定了。</p>
 <pre><code>set query_bin_auto_size = 10;
 StormEvents
@@ -1126,35 +1126,35 @@ StormEvents
 </code></pre><h2 id="排序">排序</h2>
 <p>在前面介绍 <code>bin_at</code> 这个函数时，你可能发现返回的结果中， DamageCrops 是没有排序的，显得比较乱，也不利于后续的图表展示。如果是下面这样就会好很多。</p>
 <h4 id="sort-order">sort, order</h4>
-<p><img src="../images/Pasted%20image%2020230106153432.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106153432.png" alt></p>
 <p>所以，在 Kusto 查询中，你经常也会用到排序操作符，他们就是 <code>sort</code> 或 <code>order</code> 操作符。你可以针对一个或者多个字段进行排序，排序规则有 <code>asc</code> 和 <code>desc</code> ， 如果该列有空值，你还可以通过  <code>nulls first</code> 还是 <code>nulls last</code> 来决定空值是显示在最前面呢，还是在最后面。</p>
 <h4 id="top，top-nested">top，top-nested</h4>
 <p>我们一般排序后有可能还需要显示前几名，这个时候你当然可以使用类似下面的语法 —— 结合 <code>order</code> 和 <code>take</code> 来获取前十个数据。</p>
-<p><img src="../images/Pasted%20image%2020230106153928.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106153928.png" alt></p>
 <p>但是你也可以更加简单地使用 <code>top</code> 语句来实现同样的目的。</p>
-<p><img src="../images/Pasted%20image%2020230106154031.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106154031.png" alt></p>
 <p>还有一种你可能很想实现的场景，例如你想知道在造成损失最大的前三个州中， 发生的次数最多的前十个暴风雨类型是什么呢？</p>
 <pre><code>StormEvents
 | top-nested 3 of State by sum(DamageCrops) + sum(DamageProperty),
 top-nested 10 of EventType by count()
-</code></pre><p><img src="../images/Pasted%20image%2020230106154448.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106154448.png" alt></p>
 <p>不可思议，难以置信吧，你可以写任意多层嵌套呢，只要你能看懂就行。</p>
 <h2 id="多表查询">多表查询</h2>
 <p>到目前为止，我们写过的这么多查询大多都只是针对一个表，尤其是绝大部分都是针对 <code>StormEvents</code> 这个表进行操作。但实际情况，你几乎一定会用到多个表的数据，不管是在多个表中进行联合查找，还是合并多个查询结果集。</p>
 <p>为了实现多表查询，你需要用到 <code>join</code> 或 <code>lookup</code>，为了实现结果集合并，你需要用到 <code>union</code>。</p>
 <h4 id="join-lookup">join, lookup</h4>
 <p>在我们的范例数据库中，<code>StormEvents</code> 这个表保存了每个州发生的暴风雨案例的数据，另外有一张表 <code>PopulationData</code> 则保存了每个州的人口数量。</p>
-<p><img src="../images/Pasted%20image%2020230106163929.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106163929.png" alt></p>
 <p>那么，我现在要用一个查询，统计每个州的暴风雨的次数，并且也想要同时显示它的人口数量。这就需要将两个表的数据通过州（State）这个字段连接起来，而且还要把结果集合并起来（横向的）。</p>
 <pre><code>StormEvents
 | summarize count() by State
 | join kind=inner PopulationData on State
-</code></pre><p><img src="../images/Pasted%20image%2020230106164149.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106164149.png" alt></p>
 <p>等一下，你已经看到，结果集会有四个列，而且第三个列是 <code>State1</code>，这是因为两个表都有 State 字段，所以第二个就会自动多一个数字的序号。如果想要拿掉这个列，你可以用此前介绍过的 <code>project-away</code> 操作符。</p>
-<p><img src="../images/Pasted%20image%2020230106164324.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106164324.png" alt></p>
 <p><code>join</code> （联接）支持多种方式，通过 <code>kind</code> 来定义，请参考下表的说明。</p>
-<p><img src="../images/Pasted%20image%2020230106164525.png" alt>
-<img src="../images/Pasted%20image%2020230106165031.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106164525.png" alt>
+<img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106165031.png" alt></p>
 <p>另外，在 <code>on</code> 子句后面，如果两个表都有同样的字段名，而且你就是想用这个字段来联接的话，可以直接 <code>on</code> 这个字段，而如果两个表的字段名是不同的，则可以用 <code>$left</code> 引用左表， <code>$right</code> 引用右表，并且指定要进行联接的具体字段名即可。</p>
 <pre><code>StormEvents
 | summarize count() by State
@@ -1165,7 +1165,7 @@ top-nested 10 of EventType by count()
 | summarize count() by State
 | lookup PopulationData on  State
 </code></pre><p>你会看到这个语法更简单，而且输出的结果集，也不会有重复的列，</p>
-<p><img src="../images/Pasted%20image%2020230106165226.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106165226.png" alt></p>
 <p>那你可能会问，他们到底有啥区别呢？我的理解呢，<code>lookup</code> 是一个简化版的 <code>join</code>，首先它的 <code>kind</code> 只有两种， <code>inner</code> 和 <code>leftouter</code> , 另外你也看到了，它的语法和返回结果都更简单。</p>
 <p>从性能角度来说，如果你用 <code>join</code> ，那么左表最好是更小的一个表。而如果你用 <code>lookup</code>，左表可以很大（通常是事实表），右表则需要小一些（通常是维度表）。</p>
 <h4 id="union">union</h4>
@@ -1174,13 +1174,13 @@ top-nested 10 of EventType by count()
 </code></pre><pre><code>RawSysLogs
 | union SecurityLogs
 | take 100
-</code></pre><p><img src="../images/Pasted%20image%2020230106171023.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106171023.png" alt></p>
 <p>如果你想在结果集中显示表的名字，可以添加 <code>withsource</code> 的设置，例如</p>
-<p><img src="../images/Pasted%20image%2020230106171145.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106171145.png" alt></p>
 <p>如果你希望把 <code>union</code> 的结果作为数据源，而不是最后的结果，则可以用下面这样的查询，将 <code>union</code> 作为顶级操作符使用。</p>
 <pre><code>union withsource=table RawSysLogs, SecurityLogs
 | take 100
-</code></pre><p><img src="../images/Pasted%20image%2020230106171518.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230106171518.png" alt></p>
 <p>如果你的数据库中要好多名称很类似的表（或者视图），例如 <code>sales2021</code>， <code>sales2022</code> 这样的格式，而你需要一次性地把他们 <code>union</code> 起来，可以用 <code>union sales*</code> 这样的语法。</p>
 <blockquote>
 <p>不要以为不会有这样的表（或视图），事实上这很常见。因为如果你的数据量真的很大，你可能会有这种需求，定期对数据进行预先聚合计算，然后单独存储起来，可以是一个表，也可以是一个物化视图。</p>
@@ -1226,7 +1226,7 @@ top-nested 10 of EventType by count()
     (where StartTime &gt;= datetime(&apos;2007-1-1&apos;) | take 100)
     (summarize count() by State)
     ( project DamageCrops, DamageProperty | take 100 )
-</code></pre><p><img src="../images/Pasted%20image%2020230101092939.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230101092939.png" alt></p>
 <h4 id="facet">facet</h4>
 <p>facet 是根据几个字段（下例中的 State，EventType，Source，做一个计数，在前一句where的基础上）做一个基本统计, 并继续输出一个主要结果 （with后面的语句）</p>
 <pre><code>StormEvents
@@ -1238,8 +1238,8 @@ top-nested 10 of EventType by count()
         | project State, StartTime, Source, EpisodeId, EventType
         | take 5
     )
-</code></pre><p><img src="../images/Pasted%20image%2020230101092902.png" alt></p>
-<p><img src="../images/Pasted%20image%2020230101092915.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230101092902.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230101092915.png" alt></p>
 <p>Kusto 的查询学问很大，变化无穷。这一章涵盖的部分只是最基本的一些，希望大家已这个为起点，结合实际案例探索更多有意思的场景。以后我们可以再深入地研究和学习，尤其是针对典型的业务场景的分析案例，以及如何分析这些查询的性能，以便进行优化等等。</p>
 
                                 
@@ -1284,7 +1284,7 @@ top-nested 10 of EventType by count()
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第二章：KQL核心","level":"1.4.2","depth":2,"next":{"title":"第三章：数据可视化","level":"1.4.3","depth":2,"path":"part1/chapter3.md","ref":"part1/chapter3.md","articles":[{"title":"查询图表","level":"1.4.3.1","depth":3,"anchor":"#查询图表","path":"part1/chapter3.md","ref":"part1/chapter3.md#查询图表","articles":[]},{"title":"仪表盘","level":"1.4.3.2","depth":3,"anchor":"#仪表盘","path":"part1/chapter3.md","ref":"part1/chapter3.md#仪表盘","articles":[]}]},"previous":{"title":"第一章：Kusto简介","level":"1.4.1","depth":2,"path":"part1/chapter1.md","ref":"part1/chapter1.md","articles":[{"title":"基本概念","level":"1.4.1.1","depth":3,"anchor":"#基本概念","path":"part1/chapter1.md","ref":"part1/chapter1.md#基本概念","articles":[]},{"title":"主要亮点","level":"1.4.1.2","depth":3,"anchor":"#主要亮点","path":"part1/chapter1.md","ref":"part1/chapter1.md#主要亮点","articles":[]},{"title":"范例数据库","level":"1.4.1.3","depth":3,"anchor":"#范例数据库","path":"part1/chapter1.md","ref":"part1/chapter1.md#范例数据库","articles":[]},{"title":"ADX Web UI 一览","level":"1.4.1.4","depth":3,"anchor":"#adx-web-ui-一览","path":"part1/chapter1.md","ref":"part1/chapter1.md#adx-web-ui-一览","articles":[]},{"title":"Kusto Explorer 一览","level":"1.4.1.5","depth":3,"anchor":"#kustoexplorer-一览","path":"part1/chapter1.md","ref":"part1/chapter1.md#kustoexplorer-一览","articles":[]}]},"articles":[{"title":"再论启发式和探索式","level":"1.4.2.1","depth":3,"anchor":"#再论启发式和探索式","path":"part1/chapter2.md","ref":"part1/chapter2.md#再论启发式和探索式","articles":[]},{"title":"两个注意事项","level":"1.4.2.2","depth":3,"anchor":"#两个注意事项","path":"part1/chapter2.md","ref":"part1/chapter2.md#两个注意事项","articles":[]},{"title":"数据过滤和搜索","level":"1.4.2.3","depth":3,"anchor":"#数据过滤和搜索","path":"part1/chapter2.md","ref":"part1/chapter2.md#数据过滤和搜索","articles":[]},{"title":"选择或扩展字段","level":"1.4.2.4","depth":3,"anchor":"#选择或扩展字段","path":"part1/chapter2.md","ref":"part1/chapter2.md#选择或扩展字段","articles":[]},{"title":"汇总统计分析","level":"1.4.2.5","depth":3,"anchor":"#汇总统计分析","path":"part1/chapter2.md","ref":"part1/chapter2.md#汇总统计分析","articles":[]},{"title":"排序","level":"1.4.2.6","depth":3,"anchor":"#排序","path":"part1/chapter2.md","ref":"part1/chapter2.md#排序","articles":[]},{"title":"多表查询","level":"1.4.2.7","depth":3,"anchor":"#多表查询","path":"part1/chapter2.md","ref":"part1/chapter2.md#多表查询","articles":[]},{"title":"多个结果集","level":"1.4.2.8","depth":3,"anchor":"#多个结果集","path":"part1/chapter2.md","ref":"part1/chapter2.md#多个结果集","articles":[]}],"dir":"ltr"},"config":{"plugins":["honkit-plugin-google-analytics","add-js"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"analytics":{"uid":"G-PCF513CZTS"},"add-js":{"js":["../scripts/clarity.js"]},"honkit-plugin-google-analytics":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"陈希章","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"大数据分析新玩法之Kusto宝典","language":"zh-hans","gitbook":"*","description":"大数据分析，Kusto，Azure Data Explorer"},"file":{"path":"part1/chapter2.md","mtime":"2023-11-27T09:33:54.657Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-11-27T09:34:05.486Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第二章：KQL核心","level":"1.4.2","depth":2,"next":{"title":"第三章：数据可视化","level":"1.4.3","depth":2,"path":"part1/chapter3.md","ref":"part1/chapter3.md","articles":[{"title":"查询图表","level":"1.4.3.1","depth":3,"anchor":"#查询图表","path":"part1/chapter3.md","ref":"part1/chapter3.md#查询图表","articles":[]},{"title":"仪表盘","level":"1.4.3.2","depth":3,"anchor":"#仪表盘","path":"part1/chapter3.md","ref":"part1/chapter3.md#仪表盘","articles":[]}]},"previous":{"title":"第一章：Kusto简介","level":"1.4.1","depth":2,"path":"part1/chapter1.md","ref":"part1/chapter1.md","articles":[{"title":"基本概念","level":"1.4.1.1","depth":3,"anchor":"#基本概念","path":"part1/chapter1.md","ref":"part1/chapter1.md#基本概念","articles":[]},{"title":"主要亮点","level":"1.4.1.2","depth":3,"anchor":"#主要亮点","path":"part1/chapter1.md","ref":"part1/chapter1.md#主要亮点","articles":[]},{"title":"范例数据库","level":"1.4.1.3","depth":3,"anchor":"#范例数据库","path":"part1/chapter1.md","ref":"part1/chapter1.md#范例数据库","articles":[]},{"title":"ADX Web UI 一览","level":"1.4.1.4","depth":3,"anchor":"#adx-web-ui-一览","path":"part1/chapter1.md","ref":"part1/chapter1.md#adx-web-ui-一览","articles":[]},{"title":"Kusto Explorer 一览","level":"1.4.1.5","depth":3,"anchor":"#kustoexplorer-一览","path":"part1/chapter1.md","ref":"part1/chapter1.md#kustoexplorer-一览","articles":[]}]},"articles":[{"title":"再论启发式和探索式","level":"1.4.2.1","depth":3,"anchor":"#再论启发式和探索式","path":"part1/chapter2.md","ref":"part1/chapter2.md#再论启发式和探索式","articles":[]},{"title":"两个注意事项","level":"1.4.2.2","depth":3,"anchor":"#两个注意事项","path":"part1/chapter2.md","ref":"part1/chapter2.md#两个注意事项","articles":[]},{"title":"数据过滤和搜索","level":"1.4.2.3","depth":3,"anchor":"#数据过滤和搜索","path":"part1/chapter2.md","ref":"part1/chapter2.md#数据过滤和搜索","articles":[]},{"title":"选择或扩展字段","level":"1.4.2.4","depth":3,"anchor":"#选择或扩展字段","path":"part1/chapter2.md","ref":"part1/chapter2.md#选择或扩展字段","articles":[]},{"title":"汇总统计分析","level":"1.4.2.5","depth":3,"anchor":"#汇总统计分析","path":"part1/chapter2.md","ref":"part1/chapter2.md#汇总统计分析","articles":[]},{"title":"排序","level":"1.4.2.6","depth":3,"anchor":"#排序","path":"part1/chapter2.md","ref":"part1/chapter2.md#排序","articles":[]},{"title":"多表查询","level":"1.4.2.7","depth":3,"anchor":"#多表查询","path":"part1/chapter2.md","ref":"part1/chapter2.md#多表查询","articles":[]},{"title":"多个结果集","level":"1.4.2.8","depth":3,"anchor":"#多个结果集","path":"part1/chapter2.md","ref":"part1/chapter2.md#多个结果集","articles":[]}],"dir":"ltr"},"config":{"plugins":["honkit-plugin-google-analytics","add-js"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"analytics":{"uid":"G-PCF513CZTS"},"add-js":{"js":["../scripts/clarity.js"]},"honkit-plugin-google-analytics":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"陈希章","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"大数据分析新玩法之Kusto宝典","language":"zh-hans","gitbook":"*","description":"大数据分析，Kusto，Azure Data Explorer"},"file":{"path":"part1/chapter2.md","mtime":"2024-03-08T09:10:47.455Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-03-08T09:10:48.094Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1338,7 +1338,7 @@ top-nested 10 of EventType by count()
     <script src="../gitbook/theme.js"></script>
     
         
-        <script src="../gitbook/honkit-plugin-add-js/nX4ZLczpV9VvjGN1-clarity.js"></script>
+        <script src="../gitbook/honkit-plugin-add-js/XA4O4XYbGXYmJLCU-clarity.js"></script>
         
     
         

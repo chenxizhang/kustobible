@@ -642,24 +642,24 @@
 <h2 id="与excel集成">与Excel集成</h2>
 <p>我们试想一下这样的场景：你的最终用户是一个Excel资深用户，他习惯了在Excel中创建透视表和透视图进行分析，而且他每周的高层会议，也需要用这个格式来进行展示。你需要如何实现这样的目标呢？</p>
 <p>我们很容易实现这样的目标。第一步，在 ADE 的查询编辑页面，你可以将需要的数据集准备好，然后在 “Share” 的下拉菜单中选择 “Open In Excel” 即可。</p>
-<p><img src="../images/Pasted%20image%2020230102201741.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102201741.png" alt></p>
 <p>这个操作将下载一个 <code>workbook.xlsx</code> 的文件，默认情况下这个文件是受保护的，所以你需要在磁盘上找到它，然后在属性面板中，选择 “Unblock”，然后点击 “Ok” 按钮。</p>
-<p><img src="../images/Pasted%20image%2020230102192945.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102192945.png" alt></p>
 <p>接下来双击打开这个Excel 文件，在出现的提示中点击 “Enable Content” 按钮。</p>
-<p><img src="../images/Pasted%20image%2020230102193006.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102193006.png" alt></p>
 <p>此时会弹出一个身份认证的窗口，请点击 “Sign In”，用你的Microsoft个人或工作账号完成验证，并且点击 “Connect” 按钮。</p>
-<p><img src="../images/Pasted%20image%2020230102193043.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102193043.png" alt></p>
 <p>如果一切顺利的话，你很快会在第一个工作表中看到跟在ADE查询编辑器中一样的数据结果。</p>
-<p><img src="../images/Pasted%20image%2020230102193212.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102193212.png" alt></p>
 <p>有了这个数据集，你可以在它的基础上进行进一步的分析。本章就不在这方面继续展开了，那属于Excel的基本功能范畴。</p>
 <p>但是，你可能会问一个问题，这个跟此前演示过的导出数据有什么区别吗？当然有， 区别就在于，这个数据是可以实时刷新的，它其实不光把数据拉取过来了，而且还保存了对应的数据连接（以及相应的用户身份），在需要时，你只要点击 “Refresh”  按钮（或者快捷键 Alt+F5) 就可以获取到最新的数据了。</p>
-<p><img src="../images/Pasted%20image%2020230102202544.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102202544.png" alt></p>
 <p>那么，这是怎么做到的呢？这里用到的技术叫 <code>Power Query</code>，它为Excel 访问外部数据提供了一个强大的能力。</p>
-<p><img src="../images/Pasted%20image%2020230102202800.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102202800.png" alt></p>
 <p>选中数据区域的任意位置，然后在 “Query” 这个工具栏中，选择 “Edit”，你将看到一个弹出的窗口，这就是 <code>Power Query Editor</code>。</p>
-<p><img src="../images/Pasted%20image%2020230102202954.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102202954.png" alt></p>
 <p>点击顶部工具栏中的 “Advanced Editor”，你可以看到它具体怎么实现这个查询的。</p>
-<p><img src="../images/Pasted%20image%2020230102203108.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102203108.png" alt></p>
 <p>这里的查询语法，也称为 M 语言。即便你目前对它一无所知，我相信你也大致能看懂这个查询，它其实就是建立了一个连接，指定了群集Url，数据库名称，以及具体的查询语句而已。 而查询中的 #(lf) ，应该是一个换行符的意思。</p>
 <pre><code class="lang-M">let Source <span class="hljs-built_in">=</span> AzureDataExplorer.Contents(<span class="hljs-string">&quot;https://help.kusto.windows.net/&quot;</span>, <span class="hljs-string">&quot;Samples&quot;</span>, <span class="hljs-string">&quot;StormEvents#(lf)| where StartTime &gt;= todatetime(&apos;2007-1-1&apos;)#(lf)| project StartTime, EndTime, State, EventType&quot;</span>, []) in Source
 </code></pre>
@@ -676,43 +676,43 @@
     by State
 </code></pre><p>那么，我们的需求是，能否展示一个美国地图，然后按照数量多少给每个州着色，并且在上面还要显示财产损失大小的气泡，很抱歉目前在Kusto 自带的图表中暂时还无法快速的呈现，但是Power BI 可以。</p>
 <p>那还等什么呢？第一步，仍然是在ADE的 查询编辑中将你想要的数据先确定好，然后点击 “Share” 下拉菜单中的 “Query to Power BI” 菜单。</p>
-<p><img src="../images/Pasted%20image%2020230102204649.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102204649.png" alt></p>
 <p>这个操作其实也是把一个Power Query的M 语言查询生成好了，并且保存到了剪贴板。</p>
 <p>接下来，你需要打开本地安装的 Power BI Desktop，点击主界面上的 “Transform data” 这个按钮。</p>
-<p><img src="../images/Pasted%20image%2020230102205934.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102205934.png" alt></p>
 <p>在接下来出来的 <code>Power Query Editor</code> 中，将鼠标放在左侧的导航区域，右键点击，并且选择 “Paste”</p>
-<p><img src="../images/Pasted%20image%2020230102210109.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102210109.png" alt></p>
 <p>然后点击 “Edit Credentials”</p>
-<p><img src="../images/Pasted%20image%2020230102210144.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102210144.png" alt></p>
 <p>在接下来出现的窗口中完成登录和连接。（你是否注意到，这个跟第一节Excel中的操作很类似，因为他们都是使用Power Query）。</p>
-<p><img src="../images/Pasted%20image%2020230102210217.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102210217.png" alt></p>
 <p>如果一切顺利的话，你可以看到如下图所示的数据。</p>
-<p><img src="../images/Pasted%20image%2020230102210338.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102210338.png" alt></p>
 <p>接下来你需要点击 “Close &amp; Apply” 这个按钮回到 Power BI Desktop的报表设计界面。</p>
-<p><img src="../images/Pasted%20image%2020230102210424.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102210424.png" alt></p>
 <p>接下来我们需要让Power BI 能够识别 State这个字段是代表一个州，请选中这个字段，然后在 “Column tools” 里面设置它的 Data category 为 “State or Province“。</p>
-<p><img src="../images/Pasted%20image%2020230102210846.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102210846.png" alt></p>
 <p>请注意，完成这个设置后，这个字段会带上一个地图的小图标。</p>
-<p><img src="../images/Pasted%20image%2020230102211027.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102211027.png" alt></p>
 <p>接下来就是选择一个地图控件（请选择 Filled map），然后对其进行设置了。</p>
-<p><img src="../images/Pasted%20image%2020230102212313.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102212313.png" alt></p>
 <p>你需要把 State 字段拖动到 ”Location“ 这个位置，然后设置填充颜色。</p>
-<p><img src="../images/Pasted%20image%2020230102212100.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102212100.png" alt></p>
 <p>点击上图中的 ”fx“ 按钮，并且按下图所示设置颜色渐变填充。</p>
-<p><img src="../images/Pasted%20image%2020230102212001.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102212001.png" alt></p>
 <p>点击 ”Ok“ 后，你就能看到下图所示的效果了。</p>
-<p><img src="../images/Pasted%20image%2020230102211914.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102211914.png" alt></p>
 <p>看起来还不错吧，当然这也只是小试牛刀，Power BI非常强大，你还可以发现很多值得研究的功能。</p>
 <h2 id="与-jupyter-notebook-集成">与 Jupyter Notebook 集成</h2>
 <p>这一章最后的集成场景是Jupyter Notebook。我们都知道，数据科学家们会经常使用Python进行数据建模和分析，而现在流行的方式就是用 Notebook啦，Jupyter 也无疑是一个事实上的标准。</p>
 <p>想要体验 Jupyter Notebook，最简单的方式就是通过安装 Anaconda 的完整套件，这几乎是全世界所有的数据科学家们的必备工具了，完全免费和开源。它内置安装好了很多模块，其中就包含了Jupyter。</p>
-<p><img src="../images/Pasted%20image%2020230102212613.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102212613.png" alt></p>
 <p>安装完成后，在Windows开始菜单处搜索 Jupyter，然后启动 Jupyter Notebook。</p>
-<p><img src="../images/Pasted%20image%2020230102213045.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102213045.png" alt></p>
 <p>同时会打开一个浏览器窗口，这就是本地安装好的Jupyter 服务器了。</p>
-<p><img src="../images/Pasted%20image%2020230102213055.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102213055.png" alt></p>
 <p>点击 ”New“ 来新建一个Notebook，选择 ”Python 3“。</p>
-<p><img src="../images/Pasted%20image%2020230102213248.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102213248.png" alt></p>
 <p>依次输入如下的几行代码，可以快速体验一下在Notebook中查询Kusto 数据，并且用图表进行展示。</p>
 <pre><code class="lang-python"><span class="hljs-comment"># 安装kqlmagic 这个组件</span>
 !pip install Kqlmagic --no-cache-<span class="hljs-built_in">dir</span>  --upgrade
@@ -729,12 +729,12 @@ StormEvents
 | render piechart title=<span class="hljs-string">&quot;Storm count by State&quot;</span>
 </code></pre>
 <p>请注意一步一步地执行，前面两步可能要的时间比较长。</p>
-<p><img src="../images/Pasted%20image%2020230102214846.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102214846.png" alt></p>
 <p>请注意，kqlmagic 目前支持的图表不包含 <code>timepivot</code>，<code>ladder</code>、<code>pivotchart</code>。</p>
 <p>有意思的是，在kql查询中，可以直接使用上下文中的Python定义的变量作为参数，例如</p>
-<p><img src="../images/Pasted%20image%2020230102215553.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102215553.png" alt></p>
 <p>最后，Kql查询的结果集，还可以转换为 dataframe，以便用于其他数据分析的场景，例如</p>
-<p><img src="../images/Pasted%20image%2020230102215741.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230102215741.png" alt></p>
 
                                 
                                 </section>
@@ -778,7 +778,7 @@ StormEvents
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第五章：外部应用集成","level":"1.4.5","depth":2,"next":{"title":"第六章：自动化","level":"1.4.6","depth":2,"path":"part1/chapter6.md","ref":"part1/chapter6.md","articles":[{"title":"使用命令行工具结合任务计划来自动化","level":"1.4.6.1","depth":3,"anchor":"#使用命令行工具结合任务计划来自动化","path":"part1/chapter6.md","ref":"part1/chapter6.md#使用命令行工具结合任务计划来自动化","articles":[]},{"title":"使用PowerShell 编写自定义代码来自动化","level":"1.4.6.2","depth":3,"anchor":"#使用powershell-编写自定义代码来自动化","path":"part1/chapter6.md","ref":"part1/chapter6.md#使用powershell-编写自定义代码来自动化","articles":[]},{"title":"使用Power Automate 进行自动化","level":"1.4.6.3","depth":3,"anchor":"#使用power-automate-进行自动化","path":"part1/chapter6.md","ref":"part1/chapter6.md#使用power-automate-进行自动化","articles":[]}]},"previous":{"title":"第四章：数据导入和导出","level":"1.4.4","depth":2,"path":"part1/chapter4.md","ref":"part1/chapter4.md","articles":[{"title":"创建免费群集","level":"1.4.4.1","depth":3,"anchor":"#创建免费群集","path":"part1/chapter4.md","ref":"part1/chapter4.md#创建免费群集","articles":[]},{"title":"创建数据库","level":"1.4.4.2","depth":3,"anchor":"#创建数据库","path":"part1/chapter4.md","ref":"part1/chapter4.md#创建数据库","articles":[]},{"title":"导入数据","level":"1.4.4.3","depth":3,"anchor":"#导入数据","path":"part1/chapter4.md","ref":"part1/chapter4.md#导入数据","articles":[]},{"title":"导出数据","level":"1.4.4.4","depth":3,"anchor":"#导出数据","path":"part1/chapter4.md","ref":"part1/chapter4.md#导出数据","articles":[]}]},"articles":[{"title":"与Excel集成","level":"1.4.5.1","depth":3,"anchor":"#与excel集成","path":"part1/chapter5.md","ref":"part1/chapter5.md#与excel集成","articles":[]},{"title":"与PowerBI集成","level":"1.4.5.2","depth":3,"anchor":"#与-power-bi-集成","path":"part1/chapter5.md","ref":"part1/chapter5.md#与-power-bi-集成","articles":[]},{"title":"与Jupyter Notebook 集成","level":"1.4.5.3","depth":3,"anchor":"#与-jupyter-notebook-集成","path":"part1/chapter5.md","ref":"part1/chapter5.md#与-jupyter-notebook-集成","articles":[]}],"dir":"ltr"},"config":{"plugins":["honkit-plugin-google-analytics","add-js"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"analytics":{"uid":"G-PCF513CZTS"},"add-js":{"js":["../scripts/clarity.js"]},"honkit-plugin-google-analytics":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"陈希章","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"大数据分析新玩法之Kusto宝典","language":"zh-hans","gitbook":"*","description":"大数据分析，Kusto，Azure Data Explorer"},"file":{"path":"part1/chapter5.md","mtime":"2023-11-27T09:33:54.657Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-11-27T09:34:05.486Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第五章：外部应用集成","level":"1.4.5","depth":2,"next":{"title":"第六章：自动化","level":"1.4.6","depth":2,"path":"part1/chapter6.md","ref":"part1/chapter6.md","articles":[{"title":"使用命令行工具结合任务计划来自动化","level":"1.4.6.1","depth":3,"anchor":"#使用命令行工具结合任务计划来自动化","path":"part1/chapter6.md","ref":"part1/chapter6.md#使用命令行工具结合任务计划来自动化","articles":[]},{"title":"使用PowerShell 编写自定义代码来自动化","level":"1.4.6.2","depth":3,"anchor":"#使用powershell-编写自定义代码来自动化","path":"part1/chapter6.md","ref":"part1/chapter6.md#使用powershell-编写自定义代码来自动化","articles":[]},{"title":"使用Power Automate 进行自动化","level":"1.4.6.3","depth":3,"anchor":"#使用power-automate-进行自动化","path":"part1/chapter6.md","ref":"part1/chapter6.md#使用power-automate-进行自动化","articles":[]}]},"previous":{"title":"第四章：数据导入和导出","level":"1.4.4","depth":2,"path":"part1/chapter4.md","ref":"part1/chapter4.md","articles":[{"title":"创建免费群集","level":"1.4.4.1","depth":3,"anchor":"#创建免费群集","path":"part1/chapter4.md","ref":"part1/chapter4.md#创建免费群集","articles":[]},{"title":"创建数据库","level":"1.4.4.2","depth":3,"anchor":"#创建数据库","path":"part1/chapter4.md","ref":"part1/chapter4.md#创建数据库","articles":[]},{"title":"导入数据","level":"1.4.4.3","depth":3,"anchor":"#导入数据","path":"part1/chapter4.md","ref":"part1/chapter4.md#导入数据","articles":[]},{"title":"导出数据","level":"1.4.4.4","depth":3,"anchor":"#导出数据","path":"part1/chapter4.md","ref":"part1/chapter4.md#导出数据","articles":[]}]},"articles":[{"title":"与Excel集成","level":"1.4.5.1","depth":3,"anchor":"#与excel集成","path":"part1/chapter5.md","ref":"part1/chapter5.md#与excel集成","articles":[]},{"title":"与PowerBI集成","level":"1.4.5.2","depth":3,"anchor":"#与-power-bi-集成","path":"part1/chapter5.md","ref":"part1/chapter5.md#与-power-bi-集成","articles":[]},{"title":"与Jupyter Notebook 集成","level":"1.4.5.3","depth":3,"anchor":"#与-jupyter-notebook-集成","path":"part1/chapter5.md","ref":"part1/chapter5.md#与-jupyter-notebook-集成","articles":[]}],"dir":"ltr"},"config":{"plugins":["honkit-plugin-google-analytics","add-js"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"analytics":{"uid":"G-PCF513CZTS"},"add-js":{"js":["../scripts/clarity.js"]},"honkit-plugin-google-analytics":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"陈希章","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"大数据分析新玩法之Kusto宝典","language":"zh-hans","gitbook":"*","description":"大数据分析，Kusto，Azure Data Explorer"},"file":{"path":"part1/chapter5.md","mtime":"2024-03-08T09:10:47.455Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-03-08T09:10:48.094Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -832,7 +832,7 @@ StormEvents
     <script src="../gitbook/theme.js"></script>
     
         
-        <script src="../gitbook/honkit-plugin-add-js/nX4ZLczpV9VvjGN1-clarity.js"></script>
+        <script src="../gitbook/honkit-plugin-add-js/XA4O4XYbGXYmJLCU-clarity.js"></script>
         
     
         

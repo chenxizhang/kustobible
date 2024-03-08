@@ -637,7 +637,7 @@
 <p>当然，两者是相互依存的，如果数据本身质量很差，再好的数据可视化，也就是灯红酒绿之下的昙花一现。这一章将跟大家介绍一下Kusto 自带的数据可视化能力，它包含了查询图表，以及最新预览的仪表盘。</p>
 <h2 id="查询图表">查询图表</h2>
 <p>查询图表，指的是在查询中可以直接呈现的报表。它是通过 <code>render</code> 这个操作符来实现的，在前面文章中提到过， <code>render</code> 从严格意义上来说不属于 KQL （Kusto Query Language) 的范畴，它也只能在特定的工具（Kusto.explorer 和 ADE Web UI）中才能起作用，而且它具体呈现的效果也取决于特定的客户端。</p>
-<p><img src="../images/Pasted%20image%2020230103100456.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103100456.png" alt></p>
 <h3 id="基本图表">基本图表</h3>
 <p>常见的图表有如下六种：面积图 (<code>areachart / stackedareachart</code>) ，条形图 (<code>barchart</code>)，柱状图 (<code>columnchart</code>)，线图 (<code>linechart</code>)，饼图 (<code>piechart</code>) 和散点图 (<code>scatterchart</code>) 。</p>
 <h4 id="面积图---areachart--stackedareachart">面积图 - <code>areachart / stackedareachart</code></h4>
@@ -646,39 +646,39 @@
 | summarize count() by State
 | order by  count_ desc
 | render  areachart
-</code></pre><p><img src="../images/Pasted%20image%2020230103101719.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103101719.png" alt></p>
 <h4 id="条形图---barchart">条形图 - <code>barchart</code></h4>
 <p>条形图和柱状图很类似，你可以简单地理解条形图是从左到右显示的柱状图。</p>
 <pre><code>StormEvents
 | summarize count() by State
 | order by  count_ desc
 | render barchart
-</code></pre><p><img src="../images/Pasted%20image%2020230103101837.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103101837.png" alt></p>
 <h4 id="柱状图---columnchart">柱状图 - <code>columnchart</code></h4>
 <pre><code>StormEvents
 | summarize count() by State
 | order by  count_ desc
 | render columnchart
-</code></pre><p><img src="../images/Pasted%20image%2020230103102123.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103102123.png" alt></p>
 <h4 id="线图---linechart">线图 - linechart</h4>
 <pre><code>StormEvents
 | summarize count() by State
 | order by  count_ desc
 | render linechart
-</code></pre><p><img src="../images/Pasted%20image%2020230103111955.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103111955.png" alt></p>
 <h4 id="饼图---piechart">饼图 - piechart</h4>
 <p>饼图非常直观地分析某类事物的某个数值所占的比例。</p>
 <pre><code>StormEvents
 | summarize count() by State
 | top 5 by count_
 | render piechart
-</code></pre><p><img src="../images/Pasted%20image%2020230103112052.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103112052.png" alt></p>
 <h4 id="散点图---scatterchart">散点图 - scatterchart</h4>
 <p>这个图一般x和y轴都是数字，主要观察两者的关联性，例如一个人的智商高低，跟他能赚的钱是否存在某种神秘的关系，或者本例的暴风雨的次数和造成农作物损失之间的关系。</p>
 <pre><code>StormEvents
 | summarize count(), sum( DamageCrops) by State
 | render scatterchart with (xaxis=log , yaxis=log )
-</code></pre><p><img src="../images/Pasted%20image%2020230103112409.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103112409.png" alt></p>
 <h3 id="时序图表">时序图表</h3>
 <p>我们都知道Kusto大部分的分析都与时间有关系，所以我最喜欢的图表就属于时序图表了。</p>
 <h4 id="时间表---timechart">时间表 - timechart</h4>
@@ -687,7 +687,7 @@
 | where EventType in ( &quot;Hail&quot;,&quot;Flash Flood&quot;)
 | summarize count() by EventType, bin(StartTime,2d)
 | render timechart
-</code></pre><p><img src="../images/Pasted%20image%2020230103151939.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103151939.png" alt></p>
 <h4 id="异常表--anomalychart">异常表 -anomalychart</h4>
 <p>这是时间表的一种变种，它结合了一些机器学习的算法，可以在时间表中标记出来可能的异常值。</p>
 <pre><code>Trips
@@ -697,7 +697,7 @@
 | render anomalychart with (anomalycolumns=anom)
 </code></pre><p>这里的 <code>series_decompose_anomalies</code> 是一个封装好的函数（暂时可以理解为是一个黑盒子吧），它可以根据一定的算法推测一个序列中的异常值。详情可以参考 <a href="https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/series-decompose-anomaliesfunction" target="_blank">https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/series-decompose-anomaliesfunction</a> 。 </p>
 <p>下图中的红色点就是表示异常值。本例是检测 CMT 这家出租车公司在 2011-4-1 到2011-5-1 期间，是否有收费异常的情况。</p>
-<p><img src="../images/Pasted%20image%2020230103163855.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103163855.png" alt></p>
 <h3 id="地图">地图</h3>
 <p>这是我自己加的一个类别，其实如你所见，Kusto 并没有直接提供所谓的地图可视化能力。但它有一个很特殊的设计，就是在以上的一些图表中，支持一种特殊的子类型 —— map。</p>
 <p>拥有map 这个子类型 (kind) 的图表有如下几种</p>
@@ -715,7 +715,7 @@
 | extend Events = &quot;count&quot;
 | render piechart with (kind = map)
 </code></pre><p>这个地图看起来有点怪怪的，但好歹是那么一个意思吧。要注意的是，要访问这个地图，需要能够科学上网，所以实际上这个地图的实用价值不是很高。由于功能有限，同时又有这么多限制，而且要展示的语法还相对比较复杂，如果你真的需要用地图，请参考 [[第五章 - 外部应用集成#与 Power BI 集成|第五章中关于PowerBI 集成]] 的介绍。</p>
-<p><img src="../images/Pasted%20image%2020230103193919.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103193919.png" alt></p>
 <h3 id="其他图表">其他图表</h3>
 <p>Kusto还支持几个特殊的图表（或者叫可视化元素），下面简单地做一个介绍。</p>
 <h4 id="卡片---card">卡片 - card</h4>
@@ -723,7 +723,7 @@
 <pre><code>StormEvents
 | count
 | render card
-</code></pre><p><img src="../images/Pasted%20image%2020230103200113.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103200113.png" alt></p>
 <h4 id="表格---table">表格 - table</h4>
 <p>这个是默认的，其实用不着 <code>render</code> 就是这个效果。</p>
 <h4 id="透视表---pivotchart">透视表 - pivotchart</h4>
@@ -732,20 +732,20 @@
 | take 1000
 | render pivotchart
 </code></pre><p>下面这个窗口是独立的，我们可以根据需要设置行，列字段，以及统计字段。这个跟在Excel中做很类似。</p>
-<p><img src="../images/Pasted%20image%2020230103200752.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103200752.png" alt></p>
 <p>虽然这个图表在 ADE Web UI中无法使用，但也可以通过其他方式实现。下图的结果窗口中，也有一个Pivot Mode， 而我个人觉得这里的效果可能更好。</p>
-<p><img src="../images/Pasted%20image%2020230103201648.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103201648.png" alt></p>
 <h4 id="时间透视表---timepivot">时间透视表 - timepivot</h4>
 <p>这个功能也是Kusto.explorer 特有的，而且特别有意思。它可以让我们用一种全新的方式来分析数据，尤其是你希望按照时间来随意筛选结果集的话。</p>
 <p>下图中的有各种色块的区域，可以一目了然在哪些时间段当前的类别是有数据的，然后你还可以随意点击，然后结果集会跟着筛选变化。</p>
-<p><img src="../images/Pasted%20image%2020230103201932.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230103201932.png" alt></p>
 <h4 id="ladderchart">ladderchart</h4>
 <p>这个功能也是Kusto.explorer 特有的，有点像甘特图。下面是一个例子。</p>
 <pre><code>StormEvents
 | project State, EventType, StartTime,EndTime
 | render ladderchart
 </code></pre><p>请注意，这里的查询的后面两个字段必须是日期和时间，它其实是会计算一个时间段，用来表示y 坐标上面的分类或事件发生的次数，以及每次的时间。</p>
-<p><img src="../images/Pasted%20image%2020230104135142.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104135142.png" alt></p>
 <h3 id="图表选项">图表选项</h3>
 <p>在上面的图表演示中，你可能注意到，个别的例子查询中带有 <code>with</code>  这个关键字，它是用来定义图表选项的，了解这些选项对于你能做出更加强大的图表会有很大的帮助。</p>
 <table>
@@ -827,7 +827,7 @@
     title= &quot;StormEvents by State&quot;,
     xtitle= &quot;State&quot;,
     ysplit= panels)
-</code></pre><p><img src="../images/Pasted%20image%2020230104142547.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104142547.png" alt></p>
 <pre><code>StormEvents
 | summarize count(), sum(DamageProperty) by State
 | top 5 by count_ desc
@@ -838,14 +838,14 @@
     ysplit= axes,
     xcolumn= State,
     ycolumns= count_, sum_DamageProperty)
-</code></pre><p><img src="../images/Pasted%20image%2020230104142717.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104142717.png" alt></p>
 <pre><code>StormEvents
 | where State  in (&apos;FLORIDA&apos;,&apos;KENTUCKY&apos;,&apos;GEORGIA&apos;)
 | where EventType  in (&apos;Hail&apos;,&apos;Flash Flood&apos;)
 | where Source  in (&apos;Public&apos;,&apos;ASOS&apos;)
 | summarize count() by EventType, State, Source
 | render  columnchart with (ycolumns= count_, series= EventType, Source)
-</code></pre><p><img src="../images/Pasted%20image%2020230104145108.png" alt></p>
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104145108.png" alt></p>
 <h2 id="仪表盘">仪表盘</h2>
 <p>到目前为止，我们已经拥有了很强大的能力，可以直接在查询中分析数据，甚至展示图表。这个对于即席式查询分析（Adhoc) 的场景特别有用，这也是我将 Kusto 视为启发式和探索式分析工具的一个主要原因 —— 它给了我们前所未有的自由度，在针对大量数据进行快速分析的道路上前进了一大步。</p>
 <p>但是，如果你有定期需要做汇报的需求，或者你希望将最常见的分析场景分享给同事，而他们并不需要掌握 Kusto 的技巧就能看到结果（虽然学习Kusto本身有趣），那么你可能就需要做成报表，或者利用 Kusto 自带的仪表盘来实现。</p>
@@ -855,83 +855,83 @@
 <p>你可以通过两种方式来使用仪表盘， 分别是 <code>Pin to dashboard</code> 以及 <code>从头开始自己做</code>。</p>
 <h3 id="pin-to-dashboard">Pin to dashboard</h3>
 <p>这种方式很直接，也最简单实用。你就是按照正常的方式，先编写查询，观察是否符合你的需求，然后在 <code>Share</code> 这个下拉菜单中选择 <code>Pin to dashboard</code> 即可。</p>
-<p><img src="../images/Pasted%20image%2020230104145558.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104145558.png" alt></p>
 <p>然后在滑出的面板中输入必要的信息，例如</p>
-<p><img src="../images/Pasted%20image%2020230104150643.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104150643.png" alt></p>
 <p>点击 <code>Pin</code> 按钮，就可以完成dashboard的创建。</p>
-<p><img src="../images/Pasted%20image%2020230104150805.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104150805.png" alt></p>
 <p>请注意，这里看到的图表可能跟你在查询窗口看到的略有不同。每个放在仪表盘上面的组件（专业术语为 Tile —— 磁贴）也可以移动位置，调整大小等。</p>
 <p>基本操作就是这样，你可以根据需要不断地将你要的结果 <code>Pin</code> 过来，这样就自然而然地组成了一个仪表盘了。</p>
-<p><img src="../images/Pasted%20image%2020230104151632.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104151632.png" alt></p>
 <h3 id="从头开始创建仪表盘">从头开始创建仪表盘</h3>
 <p>除了上面提到的傻瓜式操作之外，等你更为熟悉了之后，你也可以从头开始创建自己的仪表盘。</p>
-<p><img src="../images/Pasted%20image%2020230104151819.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104151819.png" alt></p>
 <p>一个仪表盘，其实可以由多个页面（Page）组成，然后每个页面，又是由一个或多个磁贴（Tile）组成，这些磁贴背后都是一个Kusto查询，他们可以基于一个或者多个数据源进行查询，同时还可以为页面，或者磁贴定义参数，设计交互性的功能（例如跳转），最后，你甚至可以通过添加文本组件，编写自定义的Markdown内容，为你的仪表盘实现更多有意思的效果。</p>
-<p><img src="../images/Pasted%20image%2020230104152154.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104152154.png" alt></p>
 <h4 id="创建和使用数据源">创建和使用数据源</h4>
 <p>点击上图中的 <code>Add tile</code> 按钮，会出现让你选择或创建数据源的界面。这里需要定义数据源名称，群集地址和数据库名称。</p>
-<p><img src="../images/Pasted%20image%2020230104152250.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104152250.png" alt></p>
 <p>你还可以控制查询结果的缓存时间。这个对于提高查询性能会有极大的帮助，尤其是你的数据并不是经常更新的情况下。</p>
-<p><img src="../images/Pasted%20image%2020230104152449.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104152449.png" alt></p>
 <p>你可以在一个仪表盘中定义多个数据源。你可以在每次创建磁贴（Tile）时选择创建，或者</p>
-<p><img src="../images/Pasted%20image%2020230104152857.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104152857.png" alt></p>
 <h4 id="编辑查询">编辑查询</h4>
 <p>定义好数据源之后你就可以定义查询和可视化组件了。请注意，这里的查询，不需要编写 <code>render</code> 子句，而是通过图形化的方式来进行配置。</p>
 <p>如果你仔细看一下，其实这个图形化配置的界面，上面的选项跟此前提到的那一些几乎是一样的。</p>
-<p><img src="../images/Pasted%20image%2020230104152756.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104152756.png" alt></p>
 <p>在这个页面，你一定不要忘记修改 Tile 的名称，并且最后点击 &quot;Apply changes&quot;。</p>
-<p><img src="../images/Pasted%20image%2020230104160810.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104160810.png" alt></p>
 <h4 id="设计参数">设计参数</h4>
 <p>参数化可以给你的仪表盘带来更加强大的功能和灵活性。事实上，因为 Kusto 大部分时候都是分析跟时间相关的，所以每个仪表盘默认都已经带有一个参数，叫时间范围（Time range）。</p>
-<p><img src="../images/Pasted%20image%2020230104161150.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104161150.png" alt></p>
 <p>准确地说， Time range 是两个参数，一个叫 _starttime , 一个叫 _endtime</p>
-<p><img src="../images/Pasted%20image%2020230104161608.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104161608.png" alt></p>
 <p>你可以自由地选择需要的时间段，甚至自定义范围。但是你可能发现，你的选择并没有改变图表的任何信息。这是对的，因为你还没有在查询中使用这些参数。下面我们来看看如何使用吧。</p>
-<p><img src="../images/Pasted%20image%2020230104161322.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104161322.png" alt></p>
 <p>按照上面这样修改后，不要忘记 &quot;Apply changes&quot;，回到仪表盘界面后，你会发现刚才那个磁贴似乎出错了。</p>
-<p><img src="../images/Pasted%20image%2020230104164249.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104164249.png" alt></p>
 <p>不要害怕，这其实是因为在当前这个时间段没有数据而已（这个设计有待改进），因为这个范例数据库中的时间比较早了，如果你调整成下面这样，就可以看到效果了。</p>
-<p><img src="../images/Pasted%20image%2020230104164441.png" alt></p>
-<p><img src="../images/Pasted%20image%2020230104164450.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104164441.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104164450.png" alt></p>
 <p>你当然可以自己创建更多的参数，在仪表盘的编辑 （Editing）模式，点击顶部的参数 （Parameters）按钮，可以进入参数面板，然后再点击 &quot;New Parameter&quot;。下面的示例，我定义了一个 EventType 的参数，它提供了一个下拉框选择，而且下拉框的值，也可以来自于一个查询。请注意，通常参数的名称，我们习惯性加一个下划线开始，而且全部小写。</p>
-<p><img src="../images/Pasted%20image%2020230104164848.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104164848.png" alt></p>
 <p>下面的示例演示了如何在查询中使用这个新的参数。</p>
-<p><img src="../images/Pasted%20image%2020230104165150.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104165150.png" alt></p>
 <h4 id="交互性设计">交互性设计</h4>
 <p>仪表盘还支持用户的交互性操作，例如你点击了一个柱状图上面的某个柱子，你可以改变某个参数的值（以便同时改变其他磁贴的数据），或者跳转到其他页面。</p>
 <p>下面这个实例展示了如何根据用户的点击，改变参数的值。</p>
-<p><img src="../images/Pasted%20image%2020230104170005.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104170005.png" alt></p>
 <p>下面这个实例展示了页面跳转的操作，这是通过创建新的钻取（Drillthrough）来实现的。</p>
-<p><img src="../images/Pasted%20image%2020230104170414.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104170414.png" alt></p>
 <p>完成这个设置后，在你的柱状图上面点击右键，会有 Drill through to 的菜单，里面列出了可以跳转的页面。</p>
-<p><img src="../images/Pasted%20image%2020230104170529.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104170529.png" alt></p>
 <p>点击 ”Page2“ ，你会看到仪表盘跳转到了对应的页面，而且参数值也相应地修改，所以下面的图表也随之发生了变化。</p>
-<p><img src="../images/Pasted%20image%2020230104170628.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104170628.png" alt></p>
 <p>请注意，你做了任何修改，一定不要忘记保存修改。如果你是修改某个磁贴（Tile），要记得 &quot;Apply changes&quot;，如果你是修改了页面内容，例如调整了布局或者添加了新的磁贴，要记得点击保存按钮。</p>
-<p><img src="../images/Pasted%20image%2020230104170904.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104170904.png" alt></p>
 <h4 id="文本组件">文本组件</h4>
 <p>除了可以添加Kusto查询和可视化组件，仪表盘还支持添加 “文本组件”，这将允许你用 <code>Markdown</code> 的语法编写任何内容，一般用来添加报表说明。</p>
 <p>你可以在仪表盘的 Editing 模式下，点击 Add 下拉菜单中的 Add text 菜单。</p>
-<p><img src="../images/Pasted%20image%2020230104171151.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104171151.png" alt></p>
 <p>你可以用标准的 <code>Markdown</code> 语法输入文本，并且可以实时预览。</p>
-<p><img src="../images/Pasted%20image%2020230104171443.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104171443.png" alt></p>
 <p>和其他的磁贴（Tile）可以组合出来丰富多彩的仪表盘。</p>
-<p><img src="../images/Pasted%20image%2020230104171604.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104171604.png" alt></p>
 <h3 id="分享和权限管理">分享和权限管理</h3>
 <p>本章的最后部分来看一下如何分享仪表盘，以及要注意的权限事项。</p>
 <h4 id="导出文件">导出文件</h4>
 <p>首先，你可以把仪表盘保存为本地文件，以便后续使用或者分享给你的同事。</p>
-<p><img src="../images/Pasted%20image%2020230104171800.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104171800.png" alt></p>
 <p>它会生成一个 json 文件，利用这个文件，可以很方便地导入，生成新的仪表盘。</p>
 <blockquote>
 <p>不要忘记保存哦。</p>
 </blockquote>
-<p><img src="../images/Pasted%20image%2020230104171857.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104171857.png" alt></p>
 <h4 id="设置权限并分享链接">设置权限并分享链接</h4>
 <p>另外一种常见的分享方式是设置权限并分享链接，这样对方可以直接通过点击链接，进入ADE Web UI 界面查看甚至进行编辑。</p>
-<p><img src="../images/Pasted%20image%2020230104172216.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104172216.png" alt></p>
 <p>目前，你可以分享给组织内的同事（或一个组），输入姓名或邮箱即可搜索，支持的权限有 Can view (只读) 和 Can edit （可编辑）两种。</p>
-<p><img src="../images/Pasted%20image%2020230104172239.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/chenxizhang/kustobible@master/docs/images/Pasted%20image%2020230104172239.png" alt></p>
 <p>最后你可以点击 “Copy link” 按钮复制链接，并且用你最方便的方式发给需要的同事。例如我的这个仪表盘的地址是：<a href="https://dataexplorer.azure.com/dashboards/6d3f3ebd-558a-434b-b451-db8db6d6e054" target="_blank">https://dataexplorer.azure.com/dashboards/6d3f3ebd-558a-434b-b451-db8db6d6e054</a> ,  请不要尝试点击，因为你没有权限的。</p>
 <blockquote>
 <p>目前仪表盘不支持匿名分享，用户必须跟作者是一个组织的同事。</p>
@@ -988,7 +988,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第三章：数据可视化","level":"1.4.3","depth":2,"next":{"title":"第四章：数据导入和导出","level":"1.4.4","depth":2,"path":"part1/chapter4.md","ref":"part1/chapter4.md","articles":[{"title":"创建免费群集","level":"1.4.4.1","depth":3,"anchor":"#创建免费群集","path":"part1/chapter4.md","ref":"part1/chapter4.md#创建免费群集","articles":[]},{"title":"创建数据库","level":"1.4.4.2","depth":3,"anchor":"#创建数据库","path":"part1/chapter4.md","ref":"part1/chapter4.md#创建数据库","articles":[]},{"title":"导入数据","level":"1.4.4.3","depth":3,"anchor":"#导入数据","path":"part1/chapter4.md","ref":"part1/chapter4.md#导入数据","articles":[]},{"title":"导出数据","level":"1.4.4.4","depth":3,"anchor":"#导出数据","path":"part1/chapter4.md","ref":"part1/chapter4.md#导出数据","articles":[]}]},"previous":{"title":"第二章：KQL核心","level":"1.4.2","depth":2,"path":"part1/chapter2.md","ref":"part1/chapter2.md","articles":[{"title":"再论启发式和探索式","level":"1.4.2.1","depth":3,"anchor":"#再论启发式和探索式","path":"part1/chapter2.md","ref":"part1/chapter2.md#再论启发式和探索式","articles":[]},{"title":"两个注意事项","level":"1.4.2.2","depth":3,"anchor":"#两个注意事项","path":"part1/chapter2.md","ref":"part1/chapter2.md#两个注意事项","articles":[]},{"title":"数据过滤和搜索","level":"1.4.2.3","depth":3,"anchor":"#数据过滤和搜索","path":"part1/chapter2.md","ref":"part1/chapter2.md#数据过滤和搜索","articles":[]},{"title":"选择或扩展字段","level":"1.4.2.4","depth":3,"anchor":"#选择或扩展字段","path":"part1/chapter2.md","ref":"part1/chapter2.md#选择或扩展字段","articles":[]},{"title":"汇总统计分析","level":"1.4.2.5","depth":3,"anchor":"#汇总统计分析","path":"part1/chapter2.md","ref":"part1/chapter2.md#汇总统计分析","articles":[]},{"title":"排序","level":"1.4.2.6","depth":3,"anchor":"#排序","path":"part1/chapter2.md","ref":"part1/chapter2.md#排序","articles":[]},{"title":"多表查询","level":"1.4.2.7","depth":3,"anchor":"#多表查询","path":"part1/chapter2.md","ref":"part1/chapter2.md#多表查询","articles":[]},{"title":"多个结果集","level":"1.4.2.8","depth":3,"anchor":"#多个结果集","path":"part1/chapter2.md","ref":"part1/chapter2.md#多个结果集","articles":[]}]},"articles":[{"title":"查询图表","level":"1.4.3.1","depth":3,"anchor":"#查询图表","path":"part1/chapter3.md","ref":"part1/chapter3.md#查询图表","articles":[]},{"title":"仪表盘","level":"1.4.3.2","depth":3,"anchor":"#仪表盘","path":"part1/chapter3.md","ref":"part1/chapter3.md#仪表盘","articles":[]}],"dir":"ltr"},"config":{"plugins":["honkit-plugin-google-analytics","add-js"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"analytics":{"uid":"G-PCF513CZTS"},"add-js":{"js":["../scripts/clarity.js"]},"honkit-plugin-google-analytics":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"陈希章","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"大数据分析新玩法之Kusto宝典","language":"zh-hans","gitbook":"*","description":"大数据分析，Kusto，Azure Data Explorer"},"file":{"path":"part1/chapter3.md","mtime":"2023-11-27T09:33:54.657Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2023-11-27T09:34:05.486Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第三章：数据可视化","level":"1.4.3","depth":2,"next":{"title":"第四章：数据导入和导出","level":"1.4.4","depth":2,"path":"part1/chapter4.md","ref":"part1/chapter4.md","articles":[{"title":"创建免费群集","level":"1.4.4.1","depth":3,"anchor":"#创建免费群集","path":"part1/chapter4.md","ref":"part1/chapter4.md#创建免费群集","articles":[]},{"title":"创建数据库","level":"1.4.4.2","depth":3,"anchor":"#创建数据库","path":"part1/chapter4.md","ref":"part1/chapter4.md#创建数据库","articles":[]},{"title":"导入数据","level":"1.4.4.3","depth":3,"anchor":"#导入数据","path":"part1/chapter4.md","ref":"part1/chapter4.md#导入数据","articles":[]},{"title":"导出数据","level":"1.4.4.4","depth":3,"anchor":"#导出数据","path":"part1/chapter4.md","ref":"part1/chapter4.md#导出数据","articles":[]}]},"previous":{"title":"第二章：KQL核心","level":"1.4.2","depth":2,"path":"part1/chapter2.md","ref":"part1/chapter2.md","articles":[{"title":"再论启发式和探索式","level":"1.4.2.1","depth":3,"anchor":"#再论启发式和探索式","path":"part1/chapter2.md","ref":"part1/chapter2.md#再论启发式和探索式","articles":[]},{"title":"两个注意事项","level":"1.4.2.2","depth":3,"anchor":"#两个注意事项","path":"part1/chapter2.md","ref":"part1/chapter2.md#两个注意事项","articles":[]},{"title":"数据过滤和搜索","level":"1.4.2.3","depth":3,"anchor":"#数据过滤和搜索","path":"part1/chapter2.md","ref":"part1/chapter2.md#数据过滤和搜索","articles":[]},{"title":"选择或扩展字段","level":"1.4.2.4","depth":3,"anchor":"#选择或扩展字段","path":"part1/chapter2.md","ref":"part1/chapter2.md#选择或扩展字段","articles":[]},{"title":"汇总统计分析","level":"1.4.2.5","depth":3,"anchor":"#汇总统计分析","path":"part1/chapter2.md","ref":"part1/chapter2.md#汇总统计分析","articles":[]},{"title":"排序","level":"1.4.2.6","depth":3,"anchor":"#排序","path":"part1/chapter2.md","ref":"part1/chapter2.md#排序","articles":[]},{"title":"多表查询","level":"1.4.2.7","depth":3,"anchor":"#多表查询","path":"part1/chapter2.md","ref":"part1/chapter2.md#多表查询","articles":[]},{"title":"多个结果集","level":"1.4.2.8","depth":3,"anchor":"#多个结果集","path":"part1/chapter2.md","ref":"part1/chapter2.md#多个结果集","articles":[]}]},"articles":[{"title":"查询图表","level":"1.4.3.1","depth":3,"anchor":"#查询图表","path":"part1/chapter3.md","ref":"part1/chapter3.md#查询图表","articles":[]},{"title":"仪表盘","level":"1.4.3.2","depth":3,"anchor":"#仪表盘","path":"part1/chapter3.md","ref":"part1/chapter3.md#仪表盘","articles":[]}],"dir":"ltr"},"config":{"plugins":["honkit-plugin-google-analytics","add-js"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"analytics":{"uid":"G-PCF513CZTS"},"add-js":{"js":["../scripts/clarity.js"]},"honkit-plugin-google-analytics":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"陈希章","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"大数据分析新玩法之Kusto宝典","language":"zh-hans","gitbook":"*","description":"大数据分析，Kusto，Azure Data Explorer"},"file":{"path":"part1/chapter3.md","mtime":"2024-03-08T09:10:47.455Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2024-03-08T09:10:48.094Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1042,7 +1042,7 @@
     <script src="../gitbook/theme.js"></script>
     
         
-        <script src="../gitbook/honkit-plugin-add-js/nX4ZLczpV9VvjGN1-clarity.js"></script>
+        <script src="../gitbook/honkit-plugin-add-js/XA4O4XYbGXYmJLCU-clarity.js"></script>
         
     
         
