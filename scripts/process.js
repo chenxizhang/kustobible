@@ -40,12 +40,3 @@ fs.readdir(docsPath, { recursive: true }, (err, files) => {
         });
     });
 });
-
-// delete the images folder under the docs folder
-const imagesPath = path.join(__dirname, '../docs/images');
-fs.rmdir(imagesPath, { recursive: true }, (err) => {
-    if (err) {
-        console.error('Could not delete the directory.', err);
-        process.exit(1);
-    }
-});
