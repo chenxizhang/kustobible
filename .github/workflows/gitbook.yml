@@ -29,6 +29,7 @@ jobs:
       - name: Install & Build
         run: |
           npm install
+          node .\scripts\process.js
           npm run build
 
       - name: Deploy
