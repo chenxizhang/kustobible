@@ -15,7 +15,8 @@
         },
         "add-js": {
             "js": [
-                "../scripts/clarity.js"
+                "../scripts/clarity.js",
+                "../scripts/googleadsense.js"
             ]
         }
     }
